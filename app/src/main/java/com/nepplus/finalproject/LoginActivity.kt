@@ -50,6 +50,7 @@ class LoginActivity : BaseActivity() {
                     if(response.isSuccessful) {
                         val basicResponse = response.body()!!
                         Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+                        Log.d("일반 로그인 토큰", basicResponse.data.token)
                     } else {
                         val errorBody = response.errorBody()!!.string()
 
@@ -97,6 +98,25 @@ class LoginActivity : BaseActivity() {
                             "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
                             "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
                 }
+                
+                apiService
+                    .postRequestSocialLogin("kakao", 
+                        user!!.id.toString(), 
+                        user.kakaoAccount?.profile?.nickname.toString()).enqueue(object : Callback<BasicResponse> {
+                        override fun onResponse(
+                            call: Call<BasicResponse>,
+                            response: Response<BasicResponse>
+                        ) {
+                            val basicResponse = response.body()!!
+
+                            Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+                            Log.d("카카오 토큰", basicResponse.data.token)
+                        }
+
+                        override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                        }
+
+                    })
             }
         }
 
@@ -112,9 +132,27 @@ class LoginActivity : BaseActivity() {
                             val id = jsonObj!!.getString("id")
                             Log.d("이름",name)
                             Log.d("아이디",id)
+
+                            apiService.postRequestSocialLogin("facebook", id, name).enqueue(object : Callback<BasicResponse> {
+                                override fun onResponse(
+                                    call: Call<BasicResponse>,
+                                    response: Response<BasicResponse>
+                                ) {
+                                    val basicResponse = response.body()!!
+
+                                    Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+                                    Log.d("페이스북 토큰", basicResponse.data.token)
+                                }
+
+                                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                                }
+
+                            })
+
                         }
                     })
                     graphRequest.executeAsync()
+
                 }
 
                 override fun onCancel() {
