@@ -13,6 +13,7 @@ import com.facebook.login.LoginResult
 import com.kakao.sdk.user.UserApiClient
 import com.nepplus.finalproject.databinding.ActivityLoginBinding
 import com.nepplus.finalproject.datas.BasicResponse
+import com.nepplus.finalproject.datas.UserResponse
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,8 +50,19 @@ class LoginActivity : BaseActivity() {
                 ) {
                     if(response.isSuccessful) {
                         val basicResponse = response.body()!!
-                        Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
                         Log.d("일반 로그인 토큰", basicResponse.data.token)
+
+
+                        val id = basicResponse.data.user.id
+                        val provider = basicResponse.data.user.provider
+                        val uid = basicResponse.data.user.uid
+                        val email = basicResponse.data.user.email
+                        val nickname = basicResponse.data.user.nick_name
+
+
+                        Toast.makeText(mContext, nickname, Toast.LENGTH_SHORT).show()
+
                     } else {
                         val errorBody = response.errorBody()!!.string()
 

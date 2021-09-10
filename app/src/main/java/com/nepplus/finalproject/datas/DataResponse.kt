@@ -1,4 +1,6 @@
 package com.nepplus.finalproject.datas
 
-class DataResponse(var token: String) {
+class DataResponse(
+    var user: UserResponse,
+    var token: String) {
 }
