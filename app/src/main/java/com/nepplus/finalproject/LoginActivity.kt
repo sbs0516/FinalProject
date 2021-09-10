@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.kakao.sdk.user.UserApiClient
 import com.nepplus.finalproject.databinding.ActivityLoginBinding
 import org.json.JSONObject
 import java.security.MessageDigest
@@ -34,6 +35,29 @@ class LoginActivity : BaseActivity() {
         callbackManager = CallbackManager.Factory.create();
 
 //        binding.loginButton.setReadPermissions("email")
+
+        binding.kakaoLoginBtn.setOnClickListener {
+            UserApiClient.instance.loginWithKakaoAccount(mContext) { token, error ->
+                if (error != null) {
+                    Log.e("카카오 로그인", "로그인 실패", error)
+                }
+                else if (token != null) {
+                    Log.i("카카오 로그인", "로그인 성공 ${token.accessToken}")
+                }
+            }
+            UserApiClient.instance.me { user, error ->
+                if (error != null) {
+                    Log.e("카카오 로그인", "사용자 정보 요청 실패", error)
+                }
+                else if (user != null) {
+                    Log.i("카카오 로그인", "사용자 정보 요청 성공" +
+                            "\n회원번호: ${user.id}" +
+                            "\n이메일: ${user.kakaoAccount?.email}" +
+                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
+                            "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+                }
+            }
+        }
 
         binding.facebookLoginBtn.setOnClickListener {
 
