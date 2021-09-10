@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="8자 이상 입력"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textPassword"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="다시 한번 입력해주세요."
-                android:inputType="textEmailAddress"/>
+                android:inputType="textPassword"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,8 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="닉네임을 입력하세요"
-                android:singleLine="true"
-                android:inputType="textPassword" />
+                android:singleLine="true"/>
 
         </LinearLayout>
 

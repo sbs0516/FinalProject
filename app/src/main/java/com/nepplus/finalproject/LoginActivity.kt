@@ -5,13 +5,18 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.kakao.sdk.user.UserApiClient
 import com.nepplus.finalproject.databinding.ActivityLoginBinding
+import com.nepplus.finalproject.datas.BasicResponse
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.security.MessageDigest
 import java.util.*
 import java.util.logging.LogManager
@@ -31,6 +36,35 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.loginBtn.setOnClickListener {
+
+            val inputId = binding.idEdt.text.toString()
+            val inputPw = binding.pwEdt.text.toString()
+
+            apiService.postRequestSignIn(inputId, inputPw).enqueue(object : Callback<BasicResponse> {
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
+                    if(response.isSuccessful) {
+                        val basicResponse = response.body()!!
+                        Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
+                    } else {
+                        val errorBody = response.errorBody()!!.string()
+
+                        val jsonObj = JSONObject(errorBody)
+                        val message = jsonObj.getString("message")
+                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                }
+
+            })
+
+        }
 
         callbackManager = CallbackManager.Factory.create();
 
