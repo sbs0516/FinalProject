@@ -14,6 +14,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.nepplus.finalproject.databinding.ActivityLoginBinding
 import com.nepplus.finalproject.datas.BasicResponse
 import com.nepplus.finalproject.datas.UserResponse
+import com.nepplus.finalproject.utils.ContextUtil
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -53,13 +54,13 @@ class LoginActivity : BaseActivity() {
 //                        Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
                         Log.d("일반 로그인 토큰", basicResponse.data.token)
 
-
                         val id = basicResponse.data.user.id
                         val provider = basicResponse.data.user.provider
                         val uid = basicResponse.data.user.uid
                         val email = basicResponse.data.user.email
                         val nickname = basicResponse.data.user.nick_name
 
+                        ContextUtil.setToken(mContext, basicResponse.data.token)
 
                         Toast.makeText(mContext, nickname, Toast.LENGTH_SHORT).show()
 
@@ -121,6 +122,8 @@ class LoginActivity : BaseActivity() {
                         ) {
                             val basicResponse = response.body()!!
 
+                            ContextUtil.setToken(mContext, basicResponse.data.token)
+
                             Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
                             Log.d("카카오 토큰", basicResponse.data.token)
                         }
@@ -151,6 +154,8 @@ class LoginActivity : BaseActivity() {
                                     response: Response<BasicResponse>
                                 ) {
                                     val basicResponse = response.body()!!
+
+                                    ContextUtil.setToken(mContext, basicResponse.data.token)
 
                                     Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
                                     Log.d("페이스북 토큰", basicResponse.data.token)
