@@ -6,14 +6,14 @@ import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import androidx.databinding.DataBindingUtil
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
+import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.nepplus.finalproject.databinding.ActivityLoginBinding
+import org.json.JSONObject
 import java.security.MessageDigest
 import java.util.*
+import java.util.logging.LogManager
 
 
 class LoginActivity : BaseActivity() {
@@ -33,28 +33,36 @@ class LoginActivity : BaseActivity() {
 
         callbackManager = CallbackManager.Factory.create();
 
-        binding.loginButton.setReadPermissions("email")
+//        binding.loginButton.setReadPermissions("email")
 
-        binding.faceboodLoginBtn.setOnClickListener {
+        binding.facebookLoginBtn.setOnClickListener {
+
+            LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult?) {
+                    Log.d("로그인 성공", result.toString())
+
+                    var graphRequest = GraphRequest.newMeRequest(result!!.accessToken, object : GraphRequest.GraphJSONObjectCallback {
+                        override fun onCompleted(jsonObj: JSONObject?, response: GraphResponse?) {
+                            val name = jsonObj!!.getString("name")
+                            val id = jsonObj!!.getString("id")
+                            Log.d("이름",name)
+                            Log.d("아이디",id)
+                        }
+                    })
+                    graphRequest.executeAsync()
+                }
+
+                override fun onCancel() {
+                }
+
+                override fun onError(error: FacebookException?) {
+                }
+
+            })
 
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
 
         }
-
-        // Callback registration
-        binding.loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
-            override fun onSuccess(loginResult: LoginResult?) {
-                // App code
-            }
-
-            override fun onCancel() {
-                // App code
-            }
-
-            override fun onError(exception: FacebookException) {
-                // App code
-            }
-        })
 
     }
 
