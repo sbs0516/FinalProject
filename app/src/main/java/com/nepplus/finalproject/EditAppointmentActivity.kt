@@ -7,6 +7,8 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.DatePicker
 import android.widget.TimePicker
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.nepplus.finalproject.databinding.ActivityEditAppointmentBinding
 import java.text.SimpleDateFormat
@@ -35,6 +37,7 @@ class EditAppointmentActivity : BaseActivity() {
 
                     val simpleDateFormat = SimpleDateFormat("yyyy. M. dd (E)")
                     binding.pickDateTxt.text = simpleDateFormat.format(mSelectedDateTime.time)
+                    binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
                 }
             }
             val datePickerDialog = DatePickerDialog(mContext, dateSetListener,
@@ -43,7 +46,7 @@ class EditAppointmentActivity : BaseActivity() {
                 mSelectedDateTime.get(Calendar.DAY_OF_MONTH))
             datePickerDialog.show()
 
-        }
+        } // 완료
 
         binding.pickTimeTxt.setOnClickListener {
 
@@ -54,19 +57,40 @@ class EditAppointmentActivity : BaseActivity() {
 
                     val simpleDateFormat = SimpleDateFormat("a h:mm")
                     binding.pickTimeTxt.text = simpleDateFormat.format(mSelectedDateTime.time)
+                    binding.pickTimeTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
                 }
             }
             TimePickerDialog(mContext, timeSetListener,
                 mSelectedDateTime.get(Calendar.HOUR_OF_DAY),
                 mSelectedDateTime.get(Calendar.MINUTE), false).show()
 
-        }
+        } // 완료
 
         binding.searchBtn.setOnClickListener {  }
 
-        binding.reEditBtn.setOnClickListener {  }
+        binding.reEditBtn.setOnClickListener {
+
+            binding.appointmentEdt.text.clear()
+            binding.pickDateTxt.text = "날짜 선택"
+            binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
+            binding.pickTimeTxt.text = "시간 선택"
+            binding.pickTimeTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
+            binding.placeEdt.text.clear()
+
+        } // 완료
 
         binding.okBtn.setOnClickListener {
+
+            if(binding.pickDateTxt.text == "날짜 선택") {
+                Toast.makeText(mContext, "날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
+                return@setOnClickListener
+            }
+            if(binding.pickTimeTxt.text == "시간 선택") {
+                Toast.makeText(mContext, "시간을 선택해주세요.", Toast.LENGTH_SHORT).show()
+                binding.pickTimeTxt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
+                return@setOnClickListener
+            }
 
             val alertDialog = AlertDialog.Builder(mContext)
             alertDialog.setTitle(binding.appointmentEdt.text.toString())
