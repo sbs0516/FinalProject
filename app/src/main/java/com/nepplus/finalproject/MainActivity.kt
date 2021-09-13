@@ -1,5 +1,6 @@
 package com.nepplus.finalproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -17,6 +18,13 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.uploadBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, EditAppointmentActivity::class.java)
+            startActivity(myIntent)
+
+        }
 
     }
 
