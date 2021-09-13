@@ -13,7 +13,6 @@ import com.facebook.login.LoginResult
 import com.kakao.sdk.user.UserApiClient
 import com.nepplus.finalproject.databinding.ActivityLoginBinding
 import com.nepplus.finalproject.datas.BasicResponse
-import com.nepplus.finalproject.datas.UserResponse
 import com.nepplus.finalproject.utils.ContextUtil
 import org.json.JSONObject
 import retrofit2.Call
@@ -21,7 +20,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.security.MessageDigest
 import java.util.*
-import java.util.logging.LogManager
 
 
 class LoginActivity : BaseActivity() {
@@ -56,7 +54,6 @@ class LoginActivity : BaseActivity() {
 
                         val id = basicResponse.data.user.id
                         val provider = basicResponse.data.user.provider
-                        val uid = basicResponse.data.user.uid
                         val email = basicResponse.data.user.email
                         val nickname = basicResponse.data.user.nick_name
 
