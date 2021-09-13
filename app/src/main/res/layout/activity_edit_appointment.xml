@@ -67,6 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="날짜 선택"
+                    android:paddingBottom="3dp"
                     android:textSize="17sp" />
 
                 <TextView
@@ -75,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:text="시간 선택"
+                    android:paddingBottom="3dp"
                     android:textSize="17sp" />
             </LinearLayout>
 

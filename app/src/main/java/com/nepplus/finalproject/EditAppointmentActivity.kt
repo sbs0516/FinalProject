@@ -18,7 +18,7 @@ class EditAppointmentActivity : BaseActivity() {
 
     lateinit var binding:ActivityEditAppointmentBinding
 
-    val mSelectedDateTime = Calendar.getInstance()
+    var mSelectedDateTime = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +38,13 @@ class EditAppointmentActivity : BaseActivity() {
                     val simpleDateFormat = SimpleDateFormat("yyyy. M. dd (E)")
                     binding.pickDateTxt.text = simpleDateFormat.format(mSelectedDateTime.time)
                     binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
+                    binding.pickDateTxt.setBackgroundResource(0)
                 }
             }
-            val datePickerDialog = DatePickerDialog(mContext, dateSetListener,
-                mSelectedDateTime.get(Calendar.YEAR),
+
+            DatePickerDialog(mContext, dateSetListener, mSelectedDateTime.get(Calendar.YEAR),
                 mSelectedDateTime.get(Calendar.MONTH),
-                mSelectedDateTime.get(Calendar.DAY_OF_MONTH))
-            datePickerDialog.show()
+                mSelectedDateTime.get(Calendar.DAY_OF_MONTH)).show()
 
         } // 완료
 
@@ -58,6 +58,7 @@ class EditAppointmentActivity : BaseActivity() {
                     val simpleDateFormat = SimpleDateFormat("a h:mm")
                     binding.pickTimeTxt.text = simpleDateFormat.format(mSelectedDateTime.time)
                     binding.pickTimeTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
+                    binding.pickTimeTxt.setBackgroundResource(0)
                 }
             }
             TimePickerDialog(mContext, timeSetListener,
@@ -71,11 +72,18 @@ class EditAppointmentActivity : BaseActivity() {
         binding.reEditBtn.setOnClickListener {
 
             binding.appointmentEdt.text.clear()
+
             binding.pickDateTxt.text = "날짜 선택"
             binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
+            binding.pickDateTxt.setBackgroundResource(0)
+
             binding.pickTimeTxt.text = "시간 선택"
             binding.pickTimeTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
+            binding.pickTimeTxt.setBackgroundResource(0)
+
             binding.placeEdt.text.clear()
+
+            mSelectedDateTime = Calendar.getInstance()
 
         } // 완료
 
@@ -84,11 +92,13 @@ class EditAppointmentActivity : BaseActivity() {
             if(binding.pickDateTxt.text == "날짜 선택") {
                 Toast.makeText(mContext, "날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
                 binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
+                binding.pickDateTxt.setBackgroundResource(R.drawable.underline_red_rect)
                 return@setOnClickListener
             }
             if(binding.pickTimeTxt.text == "시간 선택") {
                 Toast.makeText(mContext, "시간을 선택해주세요.", Toast.LENGTH_SHORT).show()
                 binding.pickTimeTxt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
+                binding.pickTimeTxt.setBackgroundResource(R.drawable.underline_red_rect)
                 return@setOnClickListener
             }
 
