@@ -19,7 +19,10 @@ class AppointmentAdapter(
 
         var row = convertView
         if(row == null) {
-            row = mInflater.inflate(R.id.)
+            row = mInflater.inflate(R.layout.appointment_list_item, null)
         }
+        row!!
+
+        return row
     }
 }
