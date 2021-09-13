@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.nepplus.finalproject.utils.ContextUtil
 
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +23,15 @@ class SplashActivity : BaseActivity() {
         val myHandler = Handler(Looper.getMainLooper())
         myHandler.postDelayed( {
 
-           val myIntent = Intent(mContext, MainActivity::class.java)
-           startActivity(myIntent)
+            val myIntent: Intent
+
+            if(ContextUtil.getToken(mContext) != "") {
+                myIntent = Intent(mContext, MainActivity::class.java)
+                startActivity(myIntent)
+            } else {
+                myIntent = Intent(mContext, LoginActivity::class.java)
+                startActivity(myIntent)
+            }
 
         }, 2000)
 

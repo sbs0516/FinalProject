@@ -29,4 +29,13 @@ interface ServerAPIService {
         @Field("uid") uid: String,
         @Field("nick_name") name: String): Call<BasicResponse>
 
+    @FormUrlEncoded
+    @POST("/appointment")
+    fun postRequestAppointment(
+        @Field("title") title: String,
+        @Field("datetime") datetime: String,
+        @Field("place") place: String,
+        @Field("latitude") latitude: Double,
+        @Field("longitude") longitude: Double): Call<BasicResponse>
+
 }

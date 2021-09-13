@@ -31,11 +31,18 @@
                 android:textSize="18sp" />
 
             <EditText
+                android:id="@+id/emptyEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
                 android:id="@+id/appointmentEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:hint="왜 만나?"
+                android:hint="목적을 입력"
+                android:maxLength="10"
+                android:imeOptions="actionDone"
                 android:singleLine="true" />
 
         </LinearLayout>
@@ -108,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
-                    android:hint="어디서?"
+                    android:hint="장소를 입력"
                     android:singleLine="true" />
 
                 <Button
