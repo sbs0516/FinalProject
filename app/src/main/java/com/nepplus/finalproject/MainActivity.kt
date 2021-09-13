@@ -4,11 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.nepplus.finalproject.adapters.AppointmentAdapter
 import com.nepplus.finalproject.databinding.ActivityMainBinding
+import com.nepplus.finalproject.datas.AppointmentData
 
 class MainActivity : BaseActivity() {
 
     lateinit var binding: ActivityMainBinding
+
+    lateinit var mAdapter: AppointmentAdapter
+
+    val mAppointmentList = ArrayList<AppointmentData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +35,9 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        mAdapter = AppointmentAdapter(mContext, R.layout.appointment_list_item, mAppointmentList)
+        binding.appointmentListView.adapter = mAdapter
 
     }
 }
