@@ -102,28 +102,7 @@ class EditAppointmentActivity : BaseActivity() {
 
         binding.okBtn.setOnClickListener {
 
-            if(binding.appointmentEdt.text.toString() == "") {
-                Toast.makeText(mContext, "제목을 작성해주세요.", Toast.LENGTH_SHORT).show()
-                binding.appointmentEdt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
-                binding.appointmentEdt.setBackgroundResource(R.drawable.underline_red_rect)
-                return@setOnClickListener
-            }
-            if(binding.pickDateTxt.text == "날짜 선택") {
-                Toast.makeText(mContext, "날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
-                binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
-                binding.pickDateTxt.setBackgroundResource(R.drawable.underline_red_rect)
-                return@setOnClickListener
-            }
-            if(binding.pickTimeTxt.text == "시간 선택") {
-                Toast.makeText(mContext, "시간을 선택해주세요.", Toast.LENGTH_SHORT).show()
-                binding.pickTimeTxt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
-                binding.pickTimeTxt.setBackgroundResource(R.drawable.underline_red_rect)
-                return@setOnClickListener
-            }
-            if(binding.placeEdt.text.toString() == "") {
-                Toast.makeText(mContext, "장소를 등록해주세요.", Toast.LENGTH_SHORT).show()
-                binding.placeEdt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
-                binding.placeEdt.setBackgroundResource(R.drawable.underline_red_rect)
+            if(!validation()) {
                 return@setOnClickListener
             }
 
@@ -175,6 +154,35 @@ class EditAppointmentActivity : BaseActivity() {
 
     override fun setValues() {
 
+    }
+
+    fun validation(): Boolean {
+
+        if(binding.appointmentEdt.text.toString() == "") {
+            Toast.makeText(mContext, "제목을 작성해주세요.", Toast.LENGTH_SHORT).show()
+//            binding.appointmentEdt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
+            binding.appointmentEdt.setBackgroundResource(R.drawable.underline_red_rect)
+            return false
+        }
+        if(binding.pickDateTxt.text == "날짜 선택") {
+            Toast.makeText(mContext, "날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
+            binding.pickDateTxt.setBackgroundResource(R.drawable.underline_red_rect)
+            return false
+        }
+        if(binding.pickTimeTxt.text == "시간 선택") {
+            Toast.makeText(mContext, "시간을 선택해주세요.", Toast.LENGTH_SHORT).show()
+            binding.pickTimeTxt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
+            binding.pickTimeTxt.setBackgroundResource(R.drawable.underline_red_rect)
+            return false
+        }
+        if(binding.placeEdt.text.toString() == "") {
+            Toast.makeText(mContext, "장소를 등록해주세요.", Toast.LENGTH_SHORT).show()
+//            binding.placeEdt.setTextColor(ContextCompat.getColor(mContext, R.color.datetime_red))
+            binding.placeEdt.setBackgroundResource(R.drawable.underline_red_rect)
+            return false
+        }
+        return true
     }
 
 }
