@@ -81,8 +81,7 @@ class EditAppointmentActivity : BaseActivity() {
         binding.reEditBtn.setOnClickListener {
 
             binding.appointmentEdt.text.clear()
-            binding.appointmentEdt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
-            binding.appointmentEdt.setBackgroundDrawable(editTextOriginBack)
+            binding.appointmentEdt.clearFocus()
 
             binding.pickDateTxt.text = "날짜 선택"
             binding.pickDateTxt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
@@ -93,8 +92,7 @@ class EditAppointmentActivity : BaseActivity() {
             binding.pickTimeTxt.setBackgroundResource(0)
 
             binding.placeEdt.text.clear()
-            binding.placeEdt.setTextColor(ContextCompat.getColor(mContext, R.color.black))
-            binding.placeEdt.setBackgroundDrawable(editTextOriginBack)
+            binding.placeEdt.clearFocus()
 
             mSelectedDateTime = Calendar.getInstance()
 
