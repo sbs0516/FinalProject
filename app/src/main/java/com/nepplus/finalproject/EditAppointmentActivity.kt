@@ -55,7 +55,7 @@ class EditAppointmentActivity : BaseActivity() {
                 mSelectedDateTime.get(Calendar.MONTH),
                 mSelectedDateTime.get(Calendar.DAY_OF_MONTH)).show()
 
-        } // 완료
+        } // 작성
 
         binding.pickTimeTxt.setOnClickListener {
 
@@ -74,7 +74,7 @@ class EditAppointmentActivity : BaseActivity() {
                 mSelectedDateTime.get(Calendar.HOUR_OF_DAY),
                 mSelectedDateTime.get(Calendar.MINUTE), false).show()
 
-        } // 완료
+        } // 작성
 
         binding.searchBtn.setOnClickListener {  }
 
@@ -98,7 +98,7 @@ class EditAppointmentActivity : BaseActivity() {
 
             mSelectedDateTime = Calendar.getInstance()
 
-        } // 완료
+        } // 작성
 
         binding.okBtn.setOnClickListener {
 
@@ -129,6 +129,8 @@ class EditAppointmentActivity : BaseActivity() {
 
             val alertDialog = AlertDialog.Builder(mContext)
             alertDialog.setTitle(binding.appointmentEdt.text.toString())
+
+            // 메시지 색깔 변경 - using Html 인데, 잘 모르니까 일단 체크만 해두자
             alertDialog.setMessage("${binding.pickDateTxt.text} ${binding.pickTimeTxt.text}, " +
                     "${binding.placeEdt.text} 에서 만나는 게 맞나요?")
             alertDialog.setPositiveButton("맞아요", DialogInterface.OnClickListener { dialogInterface, i ->
@@ -167,11 +169,12 @@ class EditAppointmentActivity : BaseActivity() {
             alertDialog.setNegativeButton("틀려요", null)
             alertDialog.show()
 
-        }
+        } // 작성 중
 
     }
 
     override fun setValues() {
 
     }
+
 }
