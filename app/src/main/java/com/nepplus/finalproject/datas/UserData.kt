@@ -1,6 +1,6 @@
 package com.nepplus.finalproject.datas
 
-class UserResponse(
+class UserData(
     var id: Int,
     var provider: String,
     var email: String,
