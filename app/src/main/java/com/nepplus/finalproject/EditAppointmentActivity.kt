@@ -113,12 +113,15 @@ class EditAppointmentActivity : BaseActivity() {
             alertDialog.setPositiveButton("맞아요", DialogInterface.OnClickListener { dialogInterface, i ->
 
                 val inputTitle = binding.appointmentEdt.text.toString()
+                Log.d("약속 제목", inputTitle)
 
                 val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
                 val inputDateTime = simpleDateFormat.format(mSelectedDateTime.time)
 
-                val inputPlace = binding.placeEdt.text.toString()
+                Log.d("약속 일시", inputDateTime.toString())
 
+                val inputPlace = binding.placeEdt.text.toString()
+                Log.d("약속 장소", inputPlace)
                 // lat 과 long 은 임시 하드코딩
                 val latitude = 37.111
                 val longitude = 128.111
@@ -129,6 +132,8 @@ class EditAppointmentActivity : BaseActivity() {
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>
                     ) {
+                        val basicResponse = response.body()!!
+                        Log.d("응답", basicResponse.message)
                         if(response.isSuccessful) {
                             Toast.makeText(mContext, "약속을 등록했습니다.", Toast.LENGTH_SHORT).show()
                             Log.d("약속 등록", response.message())
