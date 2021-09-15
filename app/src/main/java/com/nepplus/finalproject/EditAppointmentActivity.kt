@@ -110,14 +110,11 @@ class EditAppointmentActivity : BaseActivity() {
             }
 
             val inputTitle = binding.appointmentEdt.text.toString()
-            Log.d("약속 제목", inputTitle)
 
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
             val inputDateTime = simpleDateFormat.format(mSelectedDateTime.time)
-            Log.d("약속 일시", inputDateTime.toString())
 
             val inputPlace = binding.placeEdt.text.toString()
-            Log.d("약속 장소", inputPlace)
 
             // lat 과 long 은 임시 하드코딩
             mSelectedLat = 37.111
@@ -131,8 +128,6 @@ class EditAppointmentActivity : BaseActivity() {
                     "${binding.placeEdt.text} 에서 만나는 게 맞나요?")
             alertDialog.setPositiveButton("맞아요", DialogInterface.OnClickListener { dialogInterface, i ->
 
-                Log.d("임시 토큰 확인", ContextUtil.getToken(mContext))
-
                 apiService.postRequestAppointment(
                     inputTitle, inputDateTime, inputPlace, mSelectedLat, mSelectedLng).enqueue(object : Callback<BasicResponse> {
                     override fun onResponse(
@@ -142,9 +137,7 @@ class EditAppointmentActivity : BaseActivity() {
 
                         if(response.isSuccessful) {
                             val basicResponse = response.body()!!
-                            Log.d("응답", basicResponse.message)
                             Toast.makeText(mContext, "약속을 등록했습니다.", Toast.LENGTH_SHORT).show()
-                            Log.d("약속 등록", response.message())
                             finish()
                         } else {
                             val basicResponse = response.errorBody()!!.string()

@@ -141,7 +141,6 @@ class LoginActivity : BaseActivity() {
 
             LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult?) {
-                    Log.d("로그인 성공", result.toString())
 
                     var graphRequest = GraphRequest.newMeRequest(result!!.accessToken, object : GraphRequest.GraphJSONObjectCallback {
                         override fun onCompleted(jsonObj: JSONObject?, response: GraphResponse?) {
