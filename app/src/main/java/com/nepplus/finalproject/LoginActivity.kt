@@ -14,6 +14,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.nepplus.finalproject.databinding.ActivityLoginBinding
 import com.nepplus.finalproject.datas.BasicResponse
 import com.nepplus.finalproject.utils.ContextUtil
+import com.nepplus.finalproject.utils.GlobalData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -160,6 +161,8 @@ class LoginActivity : BaseActivity() {
 
                                     Toast.makeText(mContext, basicResponse.message, Toast.LENGTH_SHORT).show()
                                     Log.d("페이스북 토큰", basicResponse.data.token)
+
+                                    GlobalData.loginUser = basicResponse.data.user
 
                                     moveToMain()
                                 }

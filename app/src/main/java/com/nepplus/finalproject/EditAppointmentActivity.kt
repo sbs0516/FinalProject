@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.nepplus.finalproject.databinding.ActivityEditAppointmentBinding
 import com.nepplus.finalproject.datas.BasicResponse
+import com.nepplus.finalproject.utils.ContextUtil
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +28,9 @@ class EditAppointmentActivity : BaseActivity() {
     lateinit var binding:ActivityEditAppointmentBinding
 
     var mSelectedDateTime = Calendar.getInstance()
+
+    var mSelectedLat = 0.0
+    var mSelectedLng = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,6 +109,20 @@ class EditAppointmentActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
+            val inputTitle = binding.appointmentEdt.text.toString()
+            Log.d("약속 제목", inputTitle)
+
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
+            val inputDateTime = simpleDateFormat.format(mSelectedDateTime.time)
+            Log.d("약속 일시", inputDateTime.toString())
+
+            val inputPlace = binding.placeEdt.text.toString()
+            Log.d("약속 장소", inputPlace)
+
+            // lat 과 long 은 임시 하드코딩
+            mSelectedLat = 37.111
+            mSelectedLng = 128.111
+
             val alertDialog = AlertDialog.Builder(mContext)
             alertDialog.setTitle(binding.appointmentEdt.text.toString())
 
@@ -112,37 +131,29 @@ class EditAppointmentActivity : BaseActivity() {
                     "${binding.placeEdt.text} 에서 만나는 게 맞나요?")
             alertDialog.setPositiveButton("맞아요", DialogInterface.OnClickListener { dialogInterface, i ->
 
-                val inputTitle = binding.appointmentEdt.text.toString()
-                Log.d("약속 제목", inputTitle)
-
-                val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
-                val inputDateTime = simpleDateFormat.format(mSelectedDateTime.time)
-
-                Log.d("약속 일시", inputDateTime.toString())
-
-                val inputPlace = binding.placeEdt.text.toString()
-                Log.d("약속 장소", inputPlace)
-                // lat 과 long 은 임시 하드코딩
-                val latitude = 37.111
-                val longitude = 128.111
+                Log.d("임시 토큰 확인", ContextUtil.getToken(mContext))
 
                 apiService.postRequestAppointment(
-                    inputTitle, inputDateTime, inputPlace, latitude, longitude).enqueue(object : Callback<BasicResponse> {
+                    inputTitle, inputDateTime, inputPlace, mSelectedLat, mSelectedLng).enqueue(object : Callback<BasicResponse> {
                     override fun onResponse(
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>
                     ) {
-                        val basicResponse = response.body()!!
-                        Log.d("응답", basicResponse.message)
+
                         if(response.isSuccessful) {
+                            val basicResponse = response.body()!!
+                            Log.d("응답", basicResponse.message)
                             Toast.makeText(mContext, "약속을 등록했습니다.", Toast.LENGTH_SHORT).show()
                             Log.d("약속 등록", response.message())
                             finish()
+                        } else {
+                            val basicResponse = response.errorBody()!!.string()
+                            Log.d("에러", JSONObject(basicResponse).toString())
                         }
+
                     }
 
                     override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-
                     }
 
                 })
@@ -150,6 +161,7 @@ class EditAppointmentActivity : BaseActivity() {
             })
             alertDialog.setNegativeButton("틀려요", null)
             alertDialog.show()
+
 
         } // 작성 중
 

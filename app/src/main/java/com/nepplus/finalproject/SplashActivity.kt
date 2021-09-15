@@ -50,9 +50,11 @@ class SplashActivity : BaseActivity() {
             if(ContextUtil.getToken(mContext) != "") {
                 myIntent = Intent(mContext, MainActivity::class.java)
                 startActivity(myIntent)
+                finish()
             } else {
                 myIntent = Intent(mContext, LoginActivity::class.java)
                 startActivity(myIntent)
+                finish()
             }
 
         }, 2000)

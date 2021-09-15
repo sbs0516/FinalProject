@@ -1,6 +1,7 @@
 package com.nepplus.finalproject.web
 
 import android.content.Context
+import android.util.Log
 import com.nepplus.finalproject.utils.ContextUtil
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -20,8 +21,10 @@ class ServerAPI {
 
                 val interceptor = Interceptor {
                     with(it){
-                        val newRequest = request().newBuilder().addHeader("X-Http-Token", ContextUtil.getToken(context)).build()
+                        val newRequest = request().newBuilder()
+                            .addHeader("X-Http-Token", ContextUtil.getToken(context)).build()
 
+                        Log.d("서버 토큰값", ContextUtil.getToken(context))
                         proceed(newRequest)
                     }
                 }
