@@ -62,6 +62,8 @@ class LoginActivity : BaseActivity() {
 
                         Toast.makeText(mContext, nickname, Toast.LENGTH_SHORT).show()
 
+                        GlobalData.loginUser = basicResponse.data.user
+
                         moveToMain()
 
                     } else {
@@ -126,6 +128,8 @@ class LoginActivity : BaseActivity() {
 
                             Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
                             Log.d("카카오 토큰", basicResponse.data.token)
+
+                            GlobalData.loginUser = basicResponse.data.user
 
                             moveToMain()
                         }
