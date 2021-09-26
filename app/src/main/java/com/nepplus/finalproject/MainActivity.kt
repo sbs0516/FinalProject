@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nepplus.finalproject.adapters.AppointmentAdapter
 import com.nepplus.finalproject.databinding.ActivityMainBinding
 import com.nepplus.finalproject.datas.AppointmentData
 import com.nepplus.finalproject.datas.BasicResponse
+import com.nepplus.finalproject.fragments.InvitedAppointmentFragment
+import com.nepplus.finalproject.fragments.MyAppointmentFragment
+import com.nepplus.finalproject.fragments.MyInformationFragment
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,23 +23,34 @@ class MainActivity : BaseActivity() {
 
     lateinit var binding: ActivityMainBinding
 
-    lateinit var mAdapter: AppointmentAdapter
-
-    val mAppointmentList = ArrayList<AppointmentData>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupEvents()
         setValues()
+
     }
 
     override fun setupEvents() {
 
-        binding.uploadBtn.setOnClickListener {
+        replaceFragment(MyAppointmentFragment())
 
-            val myIntent = Intent(mContext, EditAppointmentActivity::class.java)
-            startActivity(myIntent)
+        binding.bottomNavigationBar.setOnNavigationItemSelectedListener {
+
+            when(it.itemId) {
+                R.id.myAppointmentBottomItem -> {
+                    replaceFragment(MyAppointmentFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.invitedBottomItem -> {
+                    replaceFragment(InvitedAppointmentFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+                else -> {
+                    replaceFragment(MyInformationFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+            }
 
         }
 
@@ -42,36 +58,11 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 
-        mAdapter = AppointmentAdapter(mContext, R.layout.appointment_list_item, mAppointmentList)
-        binding.appointmentListView.adapter = mAdapter
-
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("resume 확인", "resume")
-
-        apiService.getRequestMyAppointment().enqueue(object : Callback<BasicResponse> {
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if(response.isSuccessful) {
-                    val basicResponse = response.body()!!
-                    Log.d("약속 목록 가져오기", basicResponse.toString())
-
-                    mAppointmentList.clear()
-                    mAppointmentList.addAll(basicResponse.data.appointments)
-
-                    mAdapter.notifyDataSetChanged()
-                } else {
-                    val error = JSONObject(response.errorBody()!!.string())
-
-                    Log.d("실패", error.toString())
-                }
-            }
-
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                Log.d("실패 확인", t.toString())
-            }
-
-        })
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransAction = supportFragmentManager.beginTransaction()
+        fragmentTransAction.replace(R.id.frameLayout, fragment)
+        fragmentTransAction.commit()
     }
 }

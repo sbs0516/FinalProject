@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/myAppointmentBottomItem"
+        android:enabled="true"
+        android:icon="@drawable/appointment_icon"
+        android:title="내 약속 목록"/>
+    <item
+        android:id="@+id/invitedBottomItem"
+        android:enabled="true"
+        android:icon="@drawable/invite_letter_icon"
+        android:title="초대 목록"/>
+    <item
+        android:id="@+id/settingBottomItem"
+        android:enabled="true"
+        android:icon="@drawable/setting_icon"
+        android:title="개인정보 설정"/>
+</menu>
