@@ -28,8 +28,8 @@
             android:gravity="center">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:padding="5dp"
                 android:src="@drawable/facebook_icon" />
 
@@ -38,17 +38,22 @@
                 android:layout_height="wrap_content"
                 android:text="닉네임"
                 android:layout_marginLeft="10dp"
-                android:textSize="23sp"/>
+                android:textSize="20sp"/>
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:padding="3dp"
                 android:src="@drawable/edit_pencil_icon" />
 
 
         </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp" >
+
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -75,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="내 준비 시간"
                 android:layout_marginLeft="10dp"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -86,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XX분"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="40dp"
@@ -121,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:text="내 친구 목록"
                 android:layout_marginLeft="10dp"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -161,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:text="내 출발지 목록"
                 android:layout_marginLeft="10dp"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -201,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:text="비밀번호 변경"
                 android:layout_marginLeft="10dp"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -241,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:text="로그아웃"
                 android:layout_marginLeft="10dp"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -281,7 +286,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="회원 탈퇴"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="0dp"
