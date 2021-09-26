@@ -38,4 +38,7 @@ interface ServerAPIService {
     @GET("/user")
     fun getRequestMyInfo(): Call<BasicResponse>
 
+    @GET("/user/place")
+    fun getRequestMyPlace(): Call<BasicResponse>
+
 }

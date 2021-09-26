@@ -13,8 +13,10 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.nepplus.finalproject.adapters.EditAppointmentSpinnerAdapter
 import com.nepplus.finalproject.databinding.ActivityEditAppointmentBinding
 import com.nepplus.finalproject.datas.BasicResponse
+import com.nepplus.finalproject.datas.PlaceData
 import com.nepplus.finalproject.utils.ContextUtil
 import org.json.JSONObject
 import retrofit2.Call
@@ -31,6 +33,10 @@ class EditAppointmentActivity : BaseActivity() {
 
     var mSelectedLat = 0.0
     var mSelectedLng = 0.0
+
+    val mMyPlaceList = ArrayList<PlaceData>()
+
+    lateinit var mSpinnerAdapter: EditAppointmentSpinnerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -160,6 +166,26 @@ class EditAppointmentActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        mSpinnerAdapter = EditAppointmentSpinnerAdapter(mContext, R.layout.departure_list_item, mMyPlaceList)
+        binding.departureSpinner.adapter = mSpinnerAdapter
+
+        apiService.getRequestMyPlace().enqueue(object : Callback<BasicResponse> {
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if(response.isSuccessful) {
+                    val basicResponse = response.body()!!
+
+                    mMyPlaceList.clear()
+                    mMyPlaceList.addAll(basicResponse.data.places)
+
+                    mSpinnerAdapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+
+        })
 
     }
 

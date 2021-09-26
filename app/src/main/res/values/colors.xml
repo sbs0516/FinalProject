@@ -10,4 +10,5 @@
     <color name="login_green">#33B49E</color>
     <color name="datetime_red">#DE0000</color>
     <color name="grey">#BBBBBB</color>
+    <color name="primary_green">#63D68A</color>
 </resources>
