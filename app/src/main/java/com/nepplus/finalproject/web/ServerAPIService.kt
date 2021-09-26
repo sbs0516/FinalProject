@@ -30,10 +30,15 @@ interface ServerAPIService {
     @POST("/appointment")
     fun postRequestAppointment(
         @Field("title") title: String,
-        @Field("datetime") datetime: String,
+        @Field("datetime") dateTime: String,
+        @Field("start_place") startPlace: String,
+        @Field("start_latitude") startLatitude: Double,
+        @Field("start_longitude") startLongitude: Double,
         @Field("place") place: String,
         @Field("latitude") latitude: Double,
-        @Field("longitude") longitude: Double): Call<BasicResponse>
+        @Field("longitude") longitude: Double,
+//        @Field("friend_list") friendList: String
+        ): Call<BasicResponse>
 
     @GET("/user")
     fun getRequestMyInfo(): Call<BasicResponse>

@@ -7,10 +7,8 @@ import android.content.DialogInterface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.TimePicker
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.naver.maps.geometry.LatLng
@@ -44,6 +42,8 @@ class EditAppointmentActivity : BaseActivity() {
 
     var selectedMarker = Marker()
 
+    lateinit var mDepartPlace: PlaceData
+
     lateinit var mSpinnerAdapter: EditAppointmentSpinnerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +55,17 @@ class EditAppointmentActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        binding.departureSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
+                mDepartPlace = mMyPlaceList[p2]
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
+        }
 
         binding.helperTxt.setOnTouchListener { view, motionEvent ->
             binding.editScrollView.requestDisallowInterceptTouchEvent(true)
@@ -136,10 +146,6 @@ class EditAppointmentActivity : BaseActivity() {
 
             val inputPlace = binding.placeEdt.text.toString()
 
-            // lat 과 long 은 임시 하드코딩
-            mSelectedLat = 37.111
-            mSelectedLng = 128.111
-
             val alertDialog = AlertDialog.Builder(mContext)
             alertDialog.setTitle(binding.appointmentEdt.text.toString())
 
@@ -149,7 +155,8 @@ class EditAppointmentActivity : BaseActivity() {
             alertDialog.setPositiveButton("맞아요", DialogInterface.OnClickListener { dialogInterface, i ->
 
                 apiService.postRequestAppointment(
-                    inputTitle, inputDateTime, inputPlace, mSelectedLat, mSelectedLng).enqueue(object : Callback<BasicResponse> {
+                    inputTitle, inputDateTime, mDepartPlace.name, mDepartPlace.latitude,
+                    mDepartPlace.longitude, inputPlace, mSelectedLat, mSelectedLng).enqueue(object : Callback<BasicResponse> {
                     override fun onResponse(
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>
