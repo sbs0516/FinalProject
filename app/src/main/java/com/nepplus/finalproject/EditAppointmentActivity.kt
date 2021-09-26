@@ -13,6 +13,10 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.overlay.Marker
 import com.nepplus.finalproject.adapters.EditAppointmentSpinnerAdapter
 import com.nepplus.finalproject.databinding.ActivityEditAppointmentBinding
 import com.nepplus.finalproject.datas.BasicResponse
@@ -36,6 +40,10 @@ class EditAppointmentActivity : BaseActivity() {
 
     val mMyPlaceList = ArrayList<PlaceData>()
 
+    var mNaverMap: NaverMap? = null
+
+    var selectedMarker = Marker()
+
     lateinit var mSpinnerAdapter: EditAppointmentSpinnerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +55,13 @@ class EditAppointmentActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        val editTextOriginBack = binding.emptyEdt.background
+
+
+        binding.helperTxt.setOnTouchListener { view, motionEvent ->
+            binding.editScrollView.requestDisallowInterceptTouchEvent(true)
+            // 터치 이벤트만 먹히게? X -> 뒤에 가려진 지도 동작도 같이 실행
+            return@setOnTouchListener false
+        }
 
         binding.pickDateTxt.setOnClickListener {
 
@@ -187,6 +201,29 @@ class EditAppointmentActivity : BaseActivity() {
 
         })
 
+        val fm = supportFragmentManager
+        val mapFragment = fm.findFragmentById(R.id.naverMapFragment) as MapFragment?
+            ?: MapFragment.newInstance().also {
+                fm.beginTransaction().add(R.id.naverMapFragment, it).commit()
+            }
+
+        mapFragment.getMapAsync {
+
+            val uiSettings = it.uiSettings
+            uiSettings.isCompassEnabled = true
+            uiSettings.isScaleBarEnabled = false
+
+            it.setOnMapClickListener { pointF, latLng ->
+
+                mSelectedLat = latLng.latitude
+                mSelectedLng = latLng.longitude
+
+                selectedMarker.position = LatLng(mSelectedLat, mSelectedLng)
+                selectedMarker.map = it
+
+            }
+
+        }
     }
 
     fun validation(): Boolean {
