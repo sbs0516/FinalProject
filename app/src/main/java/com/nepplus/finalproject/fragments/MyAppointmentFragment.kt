@@ -1,11 +1,13 @@
 package com.nepplus.finalproject.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.nepplus.finalproject.EditAppointmentActivity
 import com.nepplus.finalproject.R
 import com.nepplus.finalproject.adapters.AppointmentAdapter
 import com.nepplus.finalproject.databinding.FragmentMyAppointmentBinding
@@ -41,9 +43,19 @@ class MyAppointmentFragment: BaseFragment() {
 
     override fun setupEvents() {
 
+        binding.uploadBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, EditAppointmentActivity::class.java)
+            startActivity(myIntent)
+
+        }
+
     }
 
     override fun setValues() {
+
+        mAdapter = AppointmentAdapter(mContext, R.layout.appointment_list_item, mAppointmentList)
+        binding.appointmentListView.adapter = mAdapter
 
     }
 
