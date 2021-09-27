@@ -167,7 +167,7 @@ class MyInformationFragment: BaseFragment() {
             if(resultCode == RESULT_OK) {
                 val dataUri = data?.data
 
-                val fileReqBody = RequestBody.create(MediaType.parse("image/*"), dataUri.toString())
+                val fileReqBody = RequestBody.create(MediaType.get("image/*"), dataUri.toString())
                 val body = MultipartBody.Part.createFormData("profile_image", "myFile.jpg", fileReqBody)
 
                 apiService.postRequestProfileImg(body).enqueue(object : Callback<BasicResponse> {
