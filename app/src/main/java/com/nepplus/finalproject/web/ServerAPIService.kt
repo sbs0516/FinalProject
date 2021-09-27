@@ -49,4 +49,16 @@ interface ServerAPIService {
     @GET("/appointment")
     fun getRequestMyAppointment(): Call<BasicResponse>
 
+    @FormUrlEncoded
+    @PATCH("/user")
+    fun patchRequestNickName(
+        @Field("field") field: String,
+        @Field("value") value: String): Call<BasicResponse>
+
+    @FormUrlEncoded
+    @PATCH("/user")
+    fun patchRequestReadyTime(
+        @Field("field") field: String,
+        @Field("value") value: String): Call<BasicResponse>
+
 }

@@ -14,6 +14,8 @@
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_splash.xml" value="0.20625" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_view_map.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_nickname_edit.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_readyTime_edit.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/appointment_list_item.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/departure_list_item.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/fragment_invited_appointment.xml" value="0.2234375" />
