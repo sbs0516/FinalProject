@@ -1,5 +1,6 @@
 package com.nepplus.finalproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -31,6 +32,8 @@ class MyDepartureListActivity : BaseActivity() {
 
         barAddListImg.setOnClickListener {
 
+            val myIntent = Intent(mContext, AddMyDepartureActivity::class.java)
+            startActivity(myIntent)
         }
 
 
