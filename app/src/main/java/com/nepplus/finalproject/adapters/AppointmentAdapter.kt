@@ -30,7 +30,7 @@ class AppointmentAdapter(
         val data = mList[position]
 
         val titleTxt = row.findViewById<TextView>(R.id.titleTxt)
-        val appointmentPlaceMapImg = row.findViewById<ImageView>(R.id.appointmentPlaceMapImg)
+//        val appointmentPlaceMapImg = row.findViewById<ImageView>(R.id.appointmentPlaceMapImg)
         val dateTimeTxt = row.findViewById<TextView>(R.id.dateTimeTxt)
         val placeTxt = row.findViewById<TextView>(R.id.placeTxt)
         val friendNameTxt = row.findViewById<TextView>(R.id.friendNameTxt)
@@ -42,10 +42,12 @@ class AppointmentAdapter(
 
         placeTxt.text = data.place
 
-        if(data.invitedFriends.size <=1) {
+        if(data.invitedFriends.size == 1) {
             friendNameTxt.text = "${data.invitedFriends[0].nick_name}"
-        } else {
+        } else if(data.invitedFriends.size > 1){
             friendNameTxt.text = "${data.invitedFriends[0].nick_name}님 외 ${data.invitedFriends.size - 1}명"
+        } else {
+            friendNameTxt.text = ""
         }
 
         return row

@@ -6,17 +6,17 @@
     android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:padding="5dp"
         app:civ_border_width="2dp"
         android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginLeft="5dp"
+        android:layout_height="80dp"
         android:padding="5dp"
+        android:layout_marginRight="15dp"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -28,18 +28,12 @@
                 android:id="@+id/titleTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_gravity="center"
-                android:textSize="18sp"
-                android:text="약속 제목" />
-
-            <ImageView
-                android:id="@+id/appointmentPlaceMapImg"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/ic_launcher" />
+                android:textStyle="bold"
+                android:text="약속 제목"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -57,6 +51,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:text="9월 30일 월요일" />
 
             <TextView
@@ -70,6 +65,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:text="홍대" />
 
             <TextView
@@ -91,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:text="누구누구" />
 
             <TextView
