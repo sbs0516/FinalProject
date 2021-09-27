@@ -64,6 +64,6 @@ interface ServerAPIService {
 
     @Multipart
     @PUT("/user/image")
-    fun postRequestProfileImg(@Part profileImg: MultipartBody.Part): Call<BasicResponse>
+    fun postRequestProfileImg(@Part profile_image: MultipartBody.Part): Call<BasicResponse>
 
 }
