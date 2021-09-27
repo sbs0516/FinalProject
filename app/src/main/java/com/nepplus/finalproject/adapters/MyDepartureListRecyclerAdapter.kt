@@ -50,6 +50,7 @@ class MyDepartureListRecyclerAdapter(
         holder.myPlaceImg.setOnClickListener {
 
             val myIntent = Intent(mContext, MyDeparturePopUpActivity::class.java)
+            myIntent.putExtra("myDeparture", mList[position])
             mContext.startActivity(myIntent)
 
         }
