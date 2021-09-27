@@ -21,6 +21,6 @@ class AddMyDepartureActivity : BaseActivity() {
     }
 
     override fun setValues() {
-        barTitleTxt.text = "출발지 등록하기"
+//        barTitleTxt.text = "출발지 등록하기"
     }
 }
