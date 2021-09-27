@@ -1,5 +1,6 @@
 package com.nepplus.finalproject.adapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +47,10 @@ class MyDepartureListRecyclerAdapter(
         holder.bind(mList[position])
 
         holder.myPlaceImg.setOnClickListener {
-            Toast.makeText(mContext, "장소 지도 클릭", Toast.LENGTH_SHORT).show()
+            val alert = AlertDialog.Builder(mContext)
+            val customView = LayoutInflater.from(mContext).inflate(R.layout.activity_my_custom, null)
+
+            alert.setView(customView).setPositiveButton("확인", null).show()
         }
 
         holder.myDepartureLayout.setOnClickListener {
