@@ -20,7 +20,7 @@
         <activity
             android:name=".MyDeparturePopUpActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/DialogAndNoActionBar" />
         <activity
             android:name=".MyDepartureListActivity"
             android:exported="true" />
