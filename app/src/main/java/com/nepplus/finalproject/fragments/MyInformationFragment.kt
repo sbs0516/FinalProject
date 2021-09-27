@@ -125,10 +125,12 @@ class MyInformationFragment: BaseFragment() {
 
         when(GlobalData.loginUser!!.provider) {
             "facebook" -> {
-                binding.socialLoginImg.setBackgroundResource(R.drawable.facebook_icon)
+                binding.socialLoginImg.setImageResource(R.drawable.facebook_icon)
+                binding.socialLoginImg.visibility = View.VISIBLE
             }
             "kakao" -> {
-                binding.socialLoginImg.setBackgroundResource(R.drawable.kakao_social_logo_icon)
+                binding.socialLoginImg.setImageResource(R.drawable.kakao_social_logo_icon)
+                binding.socialLoginImg.visibility = View.VISIBLE
             }
             else -> {
                 binding.socialLoginImg.visibility = View.GONE

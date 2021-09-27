@@ -32,6 +32,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:padding="5dp"
+                android:visibility="gone"
                 android:src="@drawable/facebook_icon" />
 
             <TextView
