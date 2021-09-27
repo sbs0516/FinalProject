@@ -1,6 +1,7 @@
 package com.nepplus.finalproject.web
 
 import com.nepplus.finalproject.datas.BasicResponse
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -60,5 +61,8 @@ interface ServerAPIService {
     fun patchRequestReadyTime(
         @Field("field") field: String,
         @Field("value") value: String): Call<BasicResponse>
+
+    @Multipart
+    fun postRequestProfileImg(@Part profileImg: MultipartBody.Part): Call<BasicResponse>
 
 }
