@@ -28,6 +28,7 @@ class MyDepartureListActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+
     }
 
     override fun setValues() {
