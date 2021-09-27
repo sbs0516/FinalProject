@@ -1,6 +1,7 @@
 package com.nepplus.finalproject.fragments
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import com.nepplus.finalproject.LoginActivity
 import com.nepplus.finalproject.R
 import com.nepplus.finalproject.databinding.FragmentMyInformationBinding
 import com.nepplus.finalproject.datas.BasicResponse
+import com.nepplus.finalproject.utils.ContextUtil
 import com.nepplus.finalproject.utils.GlobalData
 import retrofit2.Call
 import retrofit2.Callback
@@ -36,6 +39,18 @@ class MyInformationFragment: BaseFragment() {
     }
 
     override fun setupEvents() {
+
+        binding.logoutLayout.setOnClickListener {
+
+            GlobalData.loginUser = null
+
+            ContextUtil.setToken(mContext, "")
+
+            val myIntent = Intent(mContext, LoginActivity::class.java)
+            myIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(myIntent)
+
+        }
 
         binding.nickEditImg.setOnClickListener {
 

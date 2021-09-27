@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable-v24/app_main_icon_foreground.xml" value="0.24375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/app_main_icon_background.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/border_red_rect.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/facebook_login.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/kakao_login.xml" value="0.24375" />
@@ -16,6 +18,7 @@
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_view_map.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_nickname_edit.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_readyTime_edit.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_readytime_edit.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/appointment_list_item.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/departure_list_item.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/fragment_invited_appointment.xml" value="0.2234375" />
