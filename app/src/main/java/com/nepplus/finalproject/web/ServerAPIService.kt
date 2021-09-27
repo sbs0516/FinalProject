@@ -66,4 +66,12 @@ interface ServerAPIService {
     @PUT("/user/image")
     fun postRequestProfileImg(@Part profile_image: MultipartBody.Part): Call<BasicResponse>
 
+    @FormUrlEncoded
+    @POST("/user/place")
+    fun postRequestMyDeparture(
+        @Field("name") name: String,
+        @Field("latitude") latitude: Double,
+        @Field("longitude") longitude: Double,
+        @Field("is_primary") isPrimary: Boolean): Call<BasicResponse>
+
 }
