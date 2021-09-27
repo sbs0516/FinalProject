@@ -18,6 +18,10 @@
         android:theme="@style/Theme.FinalProject"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MyDeparturePopUpActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
             android:name=".MyDepartureListActivity"
             android:exported="true" />
         <activity

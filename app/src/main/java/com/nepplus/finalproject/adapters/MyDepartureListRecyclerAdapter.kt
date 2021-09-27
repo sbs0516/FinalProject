@@ -1,6 +1,7 @@
 package com.nepplus.finalproject.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.nepplus.finalproject.MyDeparturePopUpActivity
 import com.nepplus.finalproject.R
 import com.nepplus.finalproject.datas.PlaceData
 
@@ -46,7 +48,10 @@ class MyDepartureListRecyclerAdapter(
         holder.bind(mList[position])
 
         holder.myPlaceImg.setOnClickListener {
-            Toast.makeText(mContext, "장소 지도 클릭", Toast.LENGTH_SHORT).show()
+
+            val myIntent = Intent(mContext, MyDeparturePopUpActivity::class.java)
+            mContext.startActivity(myIntent)
+
         }
 
         holder.myDepartureLayout.setOnClickListener {
