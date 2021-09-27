@@ -5,13 +5,16 @@ import android.app.Activity.RESULT_OK
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.nepplus.finalproject.LoginActivity
@@ -56,7 +59,7 @@ class MyInformationFragment: BaseFragment() {
                 override fun onPermissionGranted() {
                     val myIntent = Intent()
                     myIntent.action = Intent.ACTION_PICK
-                    myIntent.type =android.provider.MediaStore.Images.Media.CONTENT_TYPE
+                    myIntent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
                     startActivityForResult(myIntent, REQ_FOR_GALLERY)
                 }
 
@@ -173,9 +176,10 @@ class MyInformationFragment: BaseFragment() {
                         response: Response<BasicResponse>
                     ) {
                         if(response.isSuccessful) {
-                            val basicResponse = response.body()!!
 
                             binding.profileImg.setImageURI(dataUri)
+
+                            Glide.with(mContext).load(dataUri).into(binding.profileImg)
 
                             Toast.makeText(mContext, "프로필 사진이 변경되었습니다.", Toast.LENGTH_SHORT).show()
                         }
@@ -193,6 +197,10 @@ class MyInformationFragment: BaseFragment() {
 
     fun setMyInfo() {
 
+        Glide.with(mContext).load(GlobalData.loginUser!!.profileImg).into(binding.profileImg)
+
+        Log.d("프로필 url", GlobalData.loginUser!!.profileImg)
+
         when(GlobalData.loginUser!!.provider) {
             "facebook" -> {
                 binding.socialLoginImg.setImageResource(R.drawable.facebook_icon)
@@ -209,8 +217,6 @@ class MyInformationFragment: BaseFragment() {
         }
 
         binding.nicknameTxt.text = GlobalData.loginUser!!.nick_name
-
-//        binding.myReadyTimeTxt.text = GlobalData.loginUser!!.readyMinute.toString()
 
         if(GlobalData.loginUser!!.readyMinute >= 60) {
             val hour = GlobalData.loginUser!!.readyMinute / 60
