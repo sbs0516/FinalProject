@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,19 +36,32 @@ class MainActivity : BaseActivity() {
 
         replaceFragment(MyAppointmentFragment())
 
+        barAddListImg.setOnClickListener {
+
+            val myIntent = Intent(mContext, EditAppointmentActivity::class.java)
+            startActivity(myIntent)
+
+        }
+
         binding.bottomNavigationBar.setOnNavigationItemSelectedListener {
 
             when(it.itemId) {
                 R.id.myAppointmentBottomItem -> {
                     replaceFragment(MyAppointmentFragment())
+                    barTitleTxt.text = "내 약속 목록"
+                    barAddListImg.visibility = View.VISIBLE
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.invitedBottomItem -> {
                     replaceFragment(InvitedAppointmentFragment())
+                    barTitleTxt.text = "초대 목록"
+                    barAddListImg.visibility = View.GONE
                     return@setOnNavigationItemSelectedListener true
                 }
                 else -> {
                     replaceFragment(MyInformationFragment())
+                    barTitleTxt.text = "개인정보 설정"
+                    barAddListImg.visibility = View.GONE
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -57,6 +71,9 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        barTitleTxt.text = "내 약속 목록"
+        barAddListImg.visibility = View.VISIBLE
 
     }
 

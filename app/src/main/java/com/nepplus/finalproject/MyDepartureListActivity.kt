@@ -1,6 +1,7 @@
 package com.nepplus.finalproject
 
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nepplus.finalproject.adapters.MyDepartureListRecyclerAdapter
@@ -28,10 +29,17 @@ class MyDepartureListActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        barAddListImg.setOnClickListener {
+
+        }
+
 
     }
 
     override fun setValues() {
+
+        barTitleTxt.text = "내 출발지 목록"
+        barAddListImg.visibility = View.VISIBLE
 
         mDepartureRecyclerAdapter = MyDepartureListRecyclerAdapter(mContext, mMyDepartureList)
         binding.myDepartureRecyclerView.layoutManager = LinearLayoutManager(mContext)

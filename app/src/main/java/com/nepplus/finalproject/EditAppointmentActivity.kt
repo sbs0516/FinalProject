@@ -188,6 +188,8 @@ class EditAppointmentActivity : BaseActivity() {
 
     override fun setValues() {
 
+        barTitleTxt.text = "약속 등록하기"
+
         mSpinnerAdapter = EditAppointmentSpinnerAdapter(mContext, R.layout.departure_list_item, mMyPlaceList)
         binding.departureSpinner.adapter = mSpinnerAdapter
 
