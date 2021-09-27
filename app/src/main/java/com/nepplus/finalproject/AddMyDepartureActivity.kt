@@ -36,10 +36,14 @@ class AddMyDepartureActivity : BaseActivity() {
         
         binding.yesBtn.setOnClickListener { 
             isPrimary = true
+            binding.yesBtn.setBackgroundResource(R.drawable.background_grey_rect)
+            binding.noBtn.setBackgroundResource(R.drawable.background_white_rect)
         }
         
         binding.noBtn.setOnClickListener {
             isPrimary = false
+            binding.noBtn.setBackgroundResource(R.drawable.background_grey_rect)
+            binding.yesBtn.setBackgroundResource(R.drawable.background_white_rect)
         }
         
         binding.addBtn.setOnClickListener {

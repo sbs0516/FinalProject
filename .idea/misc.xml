@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable-v24/app_main_icon_foreground.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/app_main_icon_background.xml" value="0.24375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/background_grey_rect.xml" value="0.24375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/background_white_rect.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/border_black_rect.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/border_red_rect.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/facebook_login.xml" value="0.24375" />
