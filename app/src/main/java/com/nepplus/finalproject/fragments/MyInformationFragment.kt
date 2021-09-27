@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.nepplus.finalproject.LoginActivity
+import com.nepplus.finalproject.MyDepartureListActivity
 import com.nepplus.finalproject.R
 import com.nepplus.finalproject.databinding.FragmentMyInformationBinding
 import com.nepplus.finalproject.datas.BasicResponse
@@ -53,6 +54,13 @@ class MyInformationFragment: BaseFragment() {
     }
 
     override fun setupEvents() {
+
+        binding.myPlaceListLayout.setOnClickListener {
+
+            val myIntent = Intent(mContext, MyDepartureListActivity::class.java)
+            startActivity(myIntent)
+
+        }
 
         binding.profileImg.setOnClickListener {
 
