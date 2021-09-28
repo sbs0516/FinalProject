@@ -84,4 +84,9 @@ interface ServerAPIService {
     fun deleteRequestMember(
         @Query("text") agree: String): Call<BasicResponse>
 
+    @GET("/user/check")
+    fun getRequestDuplicationCheck(
+        @Query("type") type: String,
+        @Query("value") value: String): Call<BasicResponse>
+
 }

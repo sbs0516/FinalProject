@@ -130,31 +130,21 @@ class ChangePasswordActivity : BaseActivity() {
         binding.changePwEdt.addTextChangedListener {
 
             if(it.toString().length < 4) {
-
                 crossImgAndCirCleImgVisible(Circle_GONE_Cross_VISI)
-
             } else {
-
                 crossImgAndCirCleImgVisible(Circle_VISI_Cross_GONE)
-
             }
 
             if(it.toString() != binding.repeatPwEdt.text.toString()) {
-
                 crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
-
             }
         }
         binding.repeatPwEdt.addTextChangedListener {
 
             if(it.toString() == binding.changePwEdt.text.toString() && it.toString().length >= 4) {
-
                 crossImgAndCirCleImgVisible(rCircle_VISI_rCross_GONE)
-
             } else {
-
                 crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
-
             }
         }
     }

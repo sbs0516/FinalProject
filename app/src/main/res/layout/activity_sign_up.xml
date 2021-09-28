@@ -29,7 +29,7 @@
                 android:inputType="textEmailAddress"/>
 
             <Button
-                android:id="@+id/dulpCheckBtn"
+                android:id="@+id/idDulpCheckBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="중복 확인" />
@@ -46,14 +46,49 @@
                 android:layout_height="wrap_content"
                 android:text="비밀번호" />
 
-
-            <EditText
-                android:id="@+id/pwEdt"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="4자 이상 입력"
-                android:inputType="textPassword"/>
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/pwEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="4자 이상 입력해주세요"
+                    android:singleLine="true"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:maxLength="20"
+                    android:inputType="textPassword"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/crossImg"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:src="@drawable/cross_icon" />
+
+                    <ImageView
+                        android:id="@+id/circleImg"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:visibility="gone"
+                        android:layout_gravity="right|center_vertical"
+                        android:src="@drawable/circle_icon" />
+
+                </FrameLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,13 +96,49 @@
                 android:layout_marginTop="15dp"
                 android:text="비밀번호 확인" />
 
-            <EditText
-                android:id="@+id/pwRepeatEdt"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="다시 한번 입력해주세요."
-                android:inputType="textPassword"/>
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/repeatPwEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="다시 입력해주세요"
+                    android:singleLine="true"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:maxLength="20"
+                    android:inputType="textPassword"/>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/repeatCrossImg"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:src="@drawable/cross_icon" />
+
+                    <ImageView
+                        android:id="@+id/repeatCircleImg"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:visibility="gone"
+                        android:layout_gravity="right|center_vertical"
+                        android:src="@drawable/circle_icon" />
+
+                </FrameLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,12 +146,27 @@
                 android:layout_marginTop="15dp"
                 android:text="닉네임을 입력해주세요."/>
 
-            <EditText
-                android:id="@+id/nicknameEdt"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="닉네임을 입력하세요"
-                android:singleLine="true"/>
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/nicknameEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="닉네임을 입력하세요"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/nickDuplCheckBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="중복 확인" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
