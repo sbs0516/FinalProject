@@ -64,6 +64,20 @@ interface ServerAPIService {
 
     @Multipart
     @PUT("/user/image")
-    fun postRequestProfileImg(@Part profileImg: MultipartBody.Part): Call<BasicResponse>
+    fun postRequestProfileImg(@Part profile_image: MultipartBody.Part): Call<BasicResponse>
+
+    @FormUrlEncoded
+    @POST("/user/place")
+    fun postRequestMyDeparture(
+        @Field("name") name: String,
+        @Field("latitude") latitude: Double,
+        @Field("longitude") longitude: Double,
+        @Field("is_primary") isPrimary: Boolean): Call<BasicResponse>
+
+    @FormUrlEncoded
+    @PATCH("/user/password")
+    fun patchRequestChangePassword(
+        @Field("current_password") current_password: String,
+        @Field("new_password") new_password: String): Call<BasicResponse>
 
 }

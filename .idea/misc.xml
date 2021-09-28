@@ -5,18 +5,30 @@
       <map>
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable-v24/app_main_icon_foreground.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/app_main_icon_background.xml" value="0.24375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/background_grey_rect.xml" value="0.24375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/background_grey_rect_press.xml" value="0.24375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/background_white_rect.xml" value="0.24375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/border_black_rect.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/border_red_rect.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/facebook_login.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/kakao_login.xml" value="0.24375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/drawable/login_button_background.xml" value="0.24375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/action_bar_custom.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_add_my_departure.xml" value="0.264" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_change_password.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_edit_appointment.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_main.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_my_custom.xml" value="0.20625" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_my_departure_list.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_my_departure_pop_up.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_my_information.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_splash.xml" value="0.20625" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_view_map.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_my_departure.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_nickname_edit.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_password_edit.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_readyTime_edit.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_readytime_edit.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/appointment_list_item.xml" value="0.264" />
@@ -26,6 +38,7 @@
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/fragment_my_information.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/menu/bottom_navigation_item.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/menu/my_information_item.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/xml/filepaths.xml" value="0.2234375" />
       </map>
     </option>
   </component>

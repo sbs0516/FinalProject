@@ -17,7 +17,9 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
+import com.nepplus.finalproject.ChangePasswordActivity
 import com.nepplus.finalproject.LoginActivity
+import com.nepplus.finalproject.MyDepartureListActivity
 import com.nepplus.finalproject.R
 import com.nepplus.finalproject.databinding.FragmentMyInformationBinding
 import com.nepplus.finalproject.datas.BasicResponse
@@ -29,6 +31,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class MyInformationFragment: BaseFragment() {
 
@@ -52,6 +55,20 @@ class MyInformationFragment: BaseFragment() {
     }
 
     override fun setupEvents() {
+
+        binding.myPassWordSettingLayout.setOnClickListener {
+
+            val myIntent = Intent(mContext, ChangePasswordActivity::class.java)
+            startActivity(myIntent)
+
+        }
+
+        binding.myPlaceListLayout.setOnClickListener {
+
+            val myIntent = Intent(mContext, MyDepartureListActivity::class.java)
+            startActivity(myIntent)
+
+        }
 
         binding.profileImg.setOnClickListener {
 
@@ -167,7 +184,11 @@ class MyInformationFragment: BaseFragment() {
             if(resultCode == RESULT_OK) {
                 val dataUri = data?.data
 
-                val fileReqBody = RequestBody.create(MediaType.get("image/*"), dataUri.toString())
+                Log.d("데이터 Uri", dataUri.toString())
+
+//                val file = File(dataUri.toString())
+
+                val fileReqBody = RequestBody.create(MediaType.parse("multipart/form-data"), dataUri.toString())
                 val body = MultipartBody.Part.createFormData("profile_image", "myFile.jpg", fileReqBody)
 
                 apiService.postRequestProfileImg(body).enqueue(object : Callback<BasicResponse> {
@@ -176,10 +197,17 @@ class MyInformationFragment: BaseFragment() {
                         response: Response<BasicResponse>
                     ) {
                         if(response.isSuccessful) {
+                            val basicResponse = response.body()!!
+
+                            Log.d("통신 확인", "통신 확인")
+
+                            GlobalData.loginUser = basicResponse.data.user
 
                             binding.profileImg.setImageURI(dataUri)
 
-                            Glide.with(mContext).load(dataUri).into(binding.profileImg)
+                            Glide.with(mContext).load(dataUri.toString()).into(binding.profileImg)
+
+                            Log.d("프로필 uri", basicResponse.data.user.profileImg)
 
                             Toast.makeText(mContext, "프로필 사진이 변경되었습니다.", Toast.LENGTH_SHORT).show()
                         }
@@ -187,6 +215,7 @@ class MyInformationFragment: BaseFragment() {
 
                     override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 
+                        Log.d("통신 실패", t.toString())
                     }
 
                 })
@@ -212,7 +241,7 @@ class MyInformationFragment: BaseFragment() {
             }
             else -> {
                 binding.socialLoginImg.visibility = View.GONE
-                binding.myInfoSettingLayout.visibility = View.VISIBLE
+                binding.myPassWordSettingLayout.visibility = View.VISIBLE
             }
         }
 
