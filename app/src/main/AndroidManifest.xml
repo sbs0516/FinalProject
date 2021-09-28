@@ -18,6 +18,9 @@
         android:theme="@style/Theme.FinalProject"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EditMyDepartureActivity"
+            android:exported="true" />
+        <activity
             android:name=".LeavingMemberActivity"
             android:exported="true"
             android:theme="@style/DialogAndNoActionBar" />

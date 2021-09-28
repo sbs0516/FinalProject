@@ -2,7 +2,9 @@ package com.nepplus.finalproject
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nepplus.finalproject.adapters.MyDepartureListRecyclerAdapter
@@ -21,6 +23,8 @@ class MyDepartureListActivity : BaseActivity() {
 
     val mMyDepartureList = ArrayList<PlaceData>()
 
+    var isPushEditTxt = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_departure_list)
@@ -30,12 +34,28 @@ class MyDepartureListActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        val departureListInflater = LayoutInflater.from(mContext).inflate(R.layout.departure_list_item, null)
+        val editLayout = departureListInflater.findViewById<LinearLayout>(R.id.editLayout)
+
         barAddListImg.setOnClickListener {
 
             val myIntent = Intent(mContext, AddMyDepartureActivity::class.java)
             startActivity(myIntent)
         }
 
+        barDepartureEdtTxt.setOnClickListener {
+
+            if(!isPushEditTxt) {
+                isPushEditTxt = true
+                editLayout.visibility = View.VISIBLE
+                barDepartureEdtTxt.setBackgroundResource(R.drawable.border_black_rect_press)
+            } else {
+                isPushEditTxt = false
+                editLayout.visibility = View.GONE
+                barDepartureEdtTxt.setBackgroundResource(R.drawable.border_black_rect_not_press)
+            }
+
+        }
 
     }
 
@@ -43,6 +63,7 @@ class MyDepartureListActivity : BaseActivity() {
 
         barTitleTxt.text = "내 출발지 목록"
         barAddListImg.visibility = View.VISIBLE
+        barDepartureEdtTxt.visibility = View.VISIBLE
 
         mDepartureRecyclerAdapter = MyDepartureListRecyclerAdapter(mContext, mMyDepartureList)
         binding.myDepartureRecyclerView.layoutManager = LinearLayoutManager(mContext)

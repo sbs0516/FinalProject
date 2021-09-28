@@ -11,4 +11,5 @@
     <color name="datetime_red">#DE0000</color>
     <color name="grey">#BBBBBB</color>
     <color name="primary_green">#63D68A</color>
+    <color name="editGreen">#009688</color>
 </resources>
