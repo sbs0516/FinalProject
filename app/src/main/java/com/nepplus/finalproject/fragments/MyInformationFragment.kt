@@ -17,6 +17,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
+import com.nepplus.finalproject.ChangePasswordActivity
 import com.nepplus.finalproject.LoginActivity
 import com.nepplus.finalproject.MyDepartureListActivity
 import com.nepplus.finalproject.R
@@ -54,6 +55,13 @@ class MyInformationFragment: BaseFragment() {
     }
 
     override fun setupEvents() {
+
+        binding.myPassWordSettingLayout.setOnClickListener {
+
+            val myIntent = Intent(mContext, ChangePasswordActivity::class.java)
+            startActivity(myIntent)
+
+        }
 
         binding.myPlaceListLayout.setOnClickListener {
 
@@ -233,7 +241,7 @@ class MyInformationFragment: BaseFragment() {
             }
             else -> {
                 binding.socialLoginImg.visibility = View.GONE
-                binding.myInfoSettingLayout.visibility = View.VISIBLE
+                binding.myPassWordSettingLayout.visibility = View.VISIBLE
             }
         }
 

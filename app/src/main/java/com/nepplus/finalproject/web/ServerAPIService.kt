@@ -74,4 +74,10 @@ interface ServerAPIService {
         @Field("longitude") longitude: Double,
         @Field("is_primary") isPrimary: Boolean): Call<BasicResponse>
 
+    @FormUrlEncoded
+    @PATCH("/user/password")
+    fun patchRequestChangePassword(
+        @Field("current_password") current_password: String,
+        @Field("new_password") new_password: String): Call<BasicResponse>
+
 }

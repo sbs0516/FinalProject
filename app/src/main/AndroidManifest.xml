@@ -18,9 +18,13 @@
         android:theme="@style/Theme.FinalProject"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".AddMyDepartureActivity"
+            android:name=".ChangePasswordActivity"
             android:exported="true"
             android:theme="@style/DialogAndNoActionBar"/>
+        <activity
+            android:name=".AddMyDepartureActivity"
+            android:exported="true"
+            android:theme="@style/DialogAndNoActionBar" />
         <activity
             android:name=".MyDeparturePopUpActivity"
             android:exported="true"
