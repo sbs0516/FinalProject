@@ -20,13 +20,29 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <EditText
-                android:id="@+id/idEdt"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="이메일 양식으로 입력"
-                android:inputType="textEmailAddress"/>
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/idEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="이메일 양식으로 입력"
+                    android:inputType="textEmailAddress"/>
+
+                <ImageView
+                    android:id="@+id/idDulpCheckCircleImg"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@drawable/circle_icon" />
+
+            </FrameLayout>
 
             <Button
                 android:id="@+id/idDulpCheckBtn"
@@ -151,13 +167,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
-                <EditText
-                    android:id="@+id/nicknameEdt"
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="닉네임을 입력하세요"
-                    android:singleLine="true" />
+                    android:layout_weight="1" >
+
+                    <EditText
+                        android:id="@+id/nicknameEdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="닉네임을 입력하세요"
+                        android:singleLine="true" />
+
+                    <ImageView
+                        android:id="@+id/nickDuplCheckCircleImg"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_gravity="right|center_vertical"
+                        android:src="@drawable/circle_icon" />
+
+                </FrameLayout>
+
+
 
                 <Button
                     android:id="@+id/nickDuplCheckBtn"

@@ -1,7 +1,6 @@
 package com.nepplus.finalproject
 
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -106,7 +105,7 @@ class SignUpActivity : BaseActivity() {
 
                 })
 
-            })
+            }).setNegativeButton("아니오", null).show()
 
 
 
@@ -123,7 +122,7 @@ class SignUpActivity : BaseActivity() {
                 ) {
                     if(response.isSuccessful) {
                         Toast.makeText(mContext, "사용 가능한 메일입니다.", Toast.LENGTH_SHORT).show()
-
+                        binding.idDulpCheckCircleImg.visibility = View.VISIBLE
                         idDuplCheck = true
                     } else {
                         Toast.makeText(mContext, "이미 사용 중인 메일입니다.", Toast.LENGTH_SHORT).show()
@@ -151,6 +150,7 @@ class SignUpActivity : BaseActivity() {
                     if(response.isSuccessful) {
                         Toast.makeText(mContext, "사용 가능한 닉네임입니다.", Toast.LENGTH_SHORT).show()
 
+                        binding.nickDuplCheckCircleImg.visibility = View.VISIBLE
                         nickDuplCheck = true
                     } else {
                         Toast.makeText(mContext, "이미 사용 중인 닉네임입니다.", Toast.LENGTH_SHORT).show()
@@ -169,6 +169,8 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        barTitleTxt.text = "회원가입"
 
         binding.pwEdt.addTextChangedListener {
             if(it.toString().length < 4) {
@@ -189,6 +191,20 @@ class SignUpActivity : BaseActivity() {
             } else {
                 crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
             }
+        }
+
+        binding.idEdt.addTextChangedListener {
+
+            idDuplCheck = false
+            binding.idDulpCheckCircleImg.visibility = View.GONE
+
+        }
+
+        binding.nicknameEdt.addTextChangedListener {
+
+            nickDuplCheck = false
+            binding.nickDuplCheckCircleImg.visibility = View.GONE
+
         }
 
     }
