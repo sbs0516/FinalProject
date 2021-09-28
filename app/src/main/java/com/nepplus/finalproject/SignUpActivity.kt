@@ -107,8 +107,6 @@ class SignUpActivity : BaseActivity() {
 
             }).setNegativeButton("아니오", null).show()
 
-
-
         }
 
         binding.idDulpCheckBtn.setOnClickListener {
