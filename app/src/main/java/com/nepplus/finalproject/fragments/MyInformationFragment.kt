@@ -24,6 +24,8 @@ import com.nepplus.finalproject.utils.GlobalData
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okio.BufferedSink
+import okio.Okio
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -188,10 +190,26 @@ class MyInformationFragment: BaseFragment() {
 
                 Log.d("데이터 Uri", dataUri.toString())
 
-//                val file = File(dataUri.toString())
+                val resolver = mContext.contentResolver
 
-                val fileReqBody = RequestBody.create(MediaType.parse("multipart/form-data"), dataUri.toString())
-                val body = MultipartBody.Part.createFormData("profile_image", "myFile.jpg", fileReqBody)
+                val inputStream = resolver.openInputStream(dataUri!!)
+                val contentLength = inputStream?.available()?.toLong()?:0
+
+                val requestBody = object : RequestBody() {
+                    override fun contentType(): MediaType? {
+                        return MediaType.parse(resolver.getType(dataUri!!))
+                    }
+
+                    override fun contentLength(): Long {
+                        return contentLength
+                    }
+
+                    override fun writeTo(sink: BufferedSink) {
+                        sink.writeAll(Okio.source(resolver.openInputStream(dataUri!!)))
+                    }
+
+                }
+                val body = MultipartBody.Part.createFormData("profile_image", "myFile", requestBody)
 
                 apiService.postRequestProfileImg(body).enqueue(object : Callback<BasicResponse> {
                     override fun onResponse(
@@ -204,7 +222,6 @@ class MyInformationFragment: BaseFragment() {
                             Log.d("통신 확인", "통신 확인")
 
                             GlobalData.loginUser = basicResponse.data.user
-
                             binding.profileImg.setImageURI(dataUri)
 
                             Glide.with(mContext).load(dataUri.toString()).into(binding.profileImg)
@@ -212,12 +229,15 @@ class MyInformationFragment: BaseFragment() {
                             Log.d("프로필 uri", basicResponse.data.user.profileImg)
 
                             Toast.makeText(mContext, "프로필 사진이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                        } else {
+                            val basicResponse = response.errorBody()!!.string()
+                            Log.d("통신 실패1", basicResponse.toString())
                         }
                     }
 
                     override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 
-                        Log.d("통신 실패", t.toString())
+                        Log.e("통신 실패", t.toString(), t)
                     }
 
                 })

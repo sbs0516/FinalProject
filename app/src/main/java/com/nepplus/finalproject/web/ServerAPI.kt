@@ -23,7 +23,9 @@ class ServerAPI {
                 val interceptor = Interceptor {
                     with(it){
                         val newRequest = request().newBuilder()
-                            .addHeader("X-Http-Token", ContextUtil.getToken(context)).build()
+                            .addHeader("X-Http-Token", ContextUtil.getToken(context))
+//                            .addHeader("Connection", "close")
+                            .build()
 
                         Log.d("서버 토큰값", ContextUtil.getToken(context))
                         proceed(newRequest)
