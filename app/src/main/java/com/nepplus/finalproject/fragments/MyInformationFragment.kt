@@ -113,7 +113,7 @@ class MyInformationFragment: BaseFragment() {
             val customView = LayoutInflater.from(mContext).inflate(R.layout.alert_custom_nickname_edit, null)
             val nickEditEdt = customView.findViewById<EditText>(R.id.nickEditEdt)
             val alert = AlertDialog.Builder(mContext)
-            alert.setView(customView).setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+            alert.setTitle("닉네임 변경").setView(customView).setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
                 apiService.patchRequestNickName("nickname", nickEditEdt.text.toString())
                     .enqueue(object : Callback<BasicResponse> {
@@ -143,7 +143,7 @@ class MyInformationFragment: BaseFragment() {
             val readyTimeEdit = customView.findViewById<EditText>(R.id.readyTimeEdit)
 
             val alert = AlertDialog.Builder(mContext)
-            alert.setView(customView).setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+            alert.setTitle("내 준비시간 변경").setView(customView).setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
                 apiService.patchRequestReadyTime("ready_minute", readyTimeEdit.text.toString())
                     .enqueue(object : Callback<BasicResponse> {

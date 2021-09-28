@@ -121,6 +121,11 @@ class ChangePasswordActivity : BaseActivity() {
                 binding.circleImg.visibility = View.VISIBLE
                 binding.crossImg.visibility = View.GONE
             }
+
+            if(it.toString() != binding.repeatPwEdt.text.toString()) {
+                binding.repeatCircleImg.visibility = View.GONE
+                binding.repeatCrossImg.visibility = View.VISIBLE
+            }
         }
         binding.repeatPwEdt.addTextChangedListener {
             if(it.toString() == binding.changePwEdt.text.toString() && it.toString().length >= 4) {
