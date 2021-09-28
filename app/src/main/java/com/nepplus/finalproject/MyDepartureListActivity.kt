@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,7 +36,7 @@ class MyDepartureListActivity : BaseActivity() {
     override fun setupEvents() {
 
         val departureListInflater = LayoutInflater.from(mContext).inflate(R.layout.departure_list_item, null)
-        val editLayout = departureListInflater.findViewById<LinearLayout>(R.id.editLayout)
+        val myDepartureLayout = departureListInflater.findViewById<LinearLayout>(R.id.myDepartureLayout)
 
         barAddListImg.setOnClickListener {
 
@@ -45,14 +46,21 @@ class MyDepartureListActivity : BaseActivity() {
 
         barDepartureEdtTxt.setOnClickListener {
 
+            val button = Button(mContext)
+            button.text = "편집"
+
             if(!isPushEditTxt) {
                 isPushEditTxt = true
-                editLayout.visibility = View.VISIBLE
+//                editLayout.visibility = View.VISIBLE
                 barDepartureEdtTxt.setBackgroundResource(R.drawable.border_black_rect_press)
+                myDepartureLayout.addView(button)
+
             } else {
                 isPushEditTxt = false
-                editLayout.visibility = View.GONE
+//                editLayout.visibility = View.GONE
                 barDepartureEdtTxt.setBackgroundResource(R.drawable.border_black_rect_not_press)
+                myDepartureLayout.removeView(button)
+
             }
 
         }
