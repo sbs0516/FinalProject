@@ -21,8 +21,6 @@ class MyDepartureListActivity : BaseActivity() {
 
     val mMyDepartureList = ArrayList<PlaceData>()
 
-    var isPushEditTxt = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_departure_list)
@@ -38,18 +36,6 @@ class MyDepartureListActivity : BaseActivity() {
             startActivity(myIntent)
         }
 
-//        barDepartureEdtToggleBtn.setOnClickListener {
-//
-//            if(!isPushEditTxt) {
-//                isPushEditTxt = true
-//                barDepartureEdtToggleBtn.setBackgroundResource(R.drawable.border_black_rect_press)
-//            } else {
-//                isPushEditTxt = false
-//                barDepartureEdtToggleBtn.setBackgroundResource(R.drawable.border_black_rect_not_press)
-//            }
-//            mDepartureRecyclerAdapter.isEditLayout = isPushEditTxt
-//            mDepartureRecyclerAdapter.notifyDataSetChanged()
-//        }
         barDepartureEdtToggleBtn.setOnCheckedChangeListener { compoundButton, isClicked ->
 
             mDepartureRecyclerAdapter.isEditLayout = isClicked
