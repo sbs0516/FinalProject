@@ -2,9 +2,7 @@ package com.nepplus.finalproject
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nepplus.finalproject.adapters.MyDepartureListRecyclerAdapter
@@ -40,18 +38,19 @@ class MyDepartureListActivity : BaseActivity() {
             startActivity(myIntent)
         }
 
-        barDepartureEdtTxt.setOnClickListener {
-
-            if(!isPushEditTxt) {
-                isPushEditTxt = true
-                barDepartureEdtTxt.setBackgroundResource(R.drawable.border_black_rect_press)
-            } else {
-                isPushEditTxt = false
-                barDepartureEdtTxt.setBackgroundResource(R.drawable.border_black_rect_not_press)
-            }
-            mDepartureRecyclerAdapter.isEditLayout = isPushEditTxt
-            mDepartureRecyclerAdapter.notifyDataSetChanged()
-        }
+//        barDepartureEdtToggleBtn.setOnClickListener {
+//
+//            if(!isPushEditTxt) {
+//                isPushEditTxt = true
+//                barDepartureEdtToggleBtn.setBackgroundResource(R.drawable.border_black_rect_press)
+//            } else {
+//                isPushEditTxt = false
+//                barDepartureEdtToggleBtn.setBackgroundResource(R.drawable.border_black_rect_not_press)
+//            }
+//            mDepartureRecyclerAdapter.isEditLayout = isPushEditTxt
+//            mDepartureRecyclerAdapter.notifyDataSetChanged()
+//        }
+        barDepartureEdtToggleBtn.
 
     }
 
@@ -59,7 +58,7 @@ class MyDepartureListActivity : BaseActivity() {
 
         barTitleTxt.text = "내 출발지 목록"
         barAddListImg.visibility = View.VISIBLE
-        barDepartureEdtTxt.visibility = View.VISIBLE
+        barDepartureEdtToggleBtn.visibility = View.VISIBLE
 
         mDepartureRecyclerAdapter = MyDepartureListRecyclerAdapter(mContext, mMyDepartureList)
         binding.myDepartureRecyclerView.layoutManager = LinearLayoutManager(mContext)
