@@ -34,9 +34,6 @@ class MyDepartureListActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        val departureListInflater = LayoutInflater.from(mContext).inflate(R.layout.departure_list_item, null)
-        val editLayout = departureListInflater.findViewById<LinearLayout>(R.id.editLayout)
-
         barAddListImg.setOnClickListener {
 
             val myIntent = Intent(mContext, AddMyDepartureActivity::class.java)
@@ -47,14 +44,13 @@ class MyDepartureListActivity : BaseActivity() {
 
             if(!isPushEditTxt) {
                 isPushEditTxt = true
-                editLayout.visibility = View.VISIBLE
                 barDepartureEdtTxt.setBackgroundResource(R.drawable.border_black_rect_press)
             } else {
                 isPushEditTxt = false
-                editLayout.visibility = View.GONE
                 barDepartureEdtTxt.setBackgroundResource(R.drawable.border_black_rect_not_press)
             }
-
+            mDepartureRecyclerAdapter.isEditLayout = isPushEditTxt
+            mDepartureRecyclerAdapter.notifyDataSetChanged()
         }
 
     }

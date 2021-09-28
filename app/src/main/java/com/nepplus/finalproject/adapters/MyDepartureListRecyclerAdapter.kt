@@ -16,15 +16,18 @@ class MyDepartureListRecyclerAdapter(
     val mContext: Context,
     val mList: List<PlaceData>): RecyclerView.Adapter<MyDepartureListRecyclerAdapter.MyViewHolder>() {
 
+    var isEditLayout = false
+
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         val myPlaceTxt = view.findViewById<TextView>(R.id.myPlaceTxt)
         val myPrimaryPlaceText = view.findViewById<TextView>(R.id.myPrimaryPlaceText)
         val myPlaceImg = view.findViewById<ImageView>(R.id.myPlaceImg)
         val myDepartureLayout = view.findViewById<LinearLayout>(R.id.myDepartureLayout)
+        val editLayout = view.findViewById<LinearLayout>(R.id.editLayout)
         val editBtn = view.findViewById<Button>(R.id.editBtn)
 
-        fun bind(data: PlaceData) {
+        fun bind(data: PlaceData, isEditLayout: Boolean) {
 
             if(data.isPrimary) {
                 myPrimaryPlaceText.visibility = View.VISIBLE
@@ -32,6 +35,12 @@ class MyDepartureListRecyclerAdapter(
                 myPrimaryPlaceText.visibility = View.GONE
             }
             myPlaceTxt.text = data.name
+
+            if(isEditLayout) {
+                editLayout.visibility = View.VISIBLE
+            } else {
+                editLayout.visibility = View.GONE
+            }
 
         }
 
@@ -44,7 +53,7 @@ class MyDepartureListRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(mList[position])
+        holder.bind(mList[position], isEditLayout)
 
         holder.myPlaceImg.setOnClickListener {
 
