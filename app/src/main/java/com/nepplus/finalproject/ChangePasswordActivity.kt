@@ -35,6 +35,7 @@ class ChangePasswordActivity : BaseActivity() {
         binding.cancelBtn.setOnClickListener {
 
             val alert = AlertDialog.Builder(mContext)
+
             alert.setMessage("비밀번호 변경을 취소하시겠습니까? 이전 화면으로 돌아갑니다.")
                 .setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
                     finish()
@@ -49,34 +50,47 @@ class ChangePasswordActivity : BaseActivity() {
             val repeatPw = binding.repeatPwEdt.text.toString()
 
             if(currentPw == null) {
+
                 Toast.makeText(mContext, "현재 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
                 binding.currentPwEdt.setBackgroundResource(R.drawable.underline_red_rect)
                 return@setOnClickListener
+
             } else if(currentPw.length < 4) {
+
                 Toast.makeText(mContext, "현재 비밀번호를 네 자리 이상 입력해주세요", Toast.LENGTH_SHORT).show()
                 binding.currentPwEdt.setBackgroundResource(R.drawable.underline_red_rect)
                 return@setOnClickListener
+
             }
 
             if(newPw.length < 4) {
+
                 Toast.makeText(mContext, "변경할 비밀번호를 네 자리 이상 입력해주세요", Toast.LENGTH_SHORT).show()
                 resetPwUI()
                 return@setOnClickListener
+
             } else {
+
                 crossImgAndCirCleImgVisible(Circle_VISI_Cross_GONE)
+
             }
 
             if(newPw != repeatPw) {
+
                 Toast.makeText(mContext, "변경할 비밀번호가 다르게 입력되었습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
                 resetPwUI()
                 return@setOnClickListener
+
             } else {
+
                 crossImgAndCirCleImgVisible(rCircle_VISI_rCross_GONE)
+
             }
 
             binding.currentPwEdt.setBackgroundResource(0)
 
             val alert = AlertDialog.Builder(mContext)
+
             alert.setMessage("비밀번호를 변경하시겠습니까?")
                 .setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
@@ -86,13 +100,17 @@ class ChangePasswordActivity : BaseActivity() {
                             response: Response<BasicResponse>
                         ) {
                             if(response.isSuccessful) {
+
                                 ContextUtil.setToken(mContext, response.body()!!.data.token)
                                 Toast.makeText(mContext, "비밀번호가 성공적으로 변경되었습니다.", Toast.LENGTH_SHORT).show()
                                 finish()
+
                             } else {
+
                                 Toast.makeText(mContext, "현재 비밀번호가 틀렸습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
                                 binding.currentPwEdt.setBackgroundResource(R.drawable.underline_red_rect)
                                 binding.currentPwEdt.text = null
+
                             }
                         }
 
@@ -110,26 +128,39 @@ class ChangePasswordActivity : BaseActivity() {
     override fun setValues() {
 
         binding.changePwEdt.addTextChangedListener {
+
             if(it.toString().length < 4) {
+
                 crossImgAndCirCleImgVisible(Circle_GONE_Cross_VISI)
+
             } else {
+
                 crossImgAndCirCleImgVisible(Circle_VISI_Cross_GONE)
+
             }
 
             if(it.toString() != binding.repeatPwEdt.text.toString()) {
+
                 crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
+
             }
         }
         binding.repeatPwEdt.addTextChangedListener {
+
             if(it.toString() == binding.changePwEdt.text.toString() && it.toString().length >= 4) {
+
                 crossImgAndCirCleImgVisible(rCircle_VISI_rCross_GONE)
+
             } else {
+
                 crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
+
             }
         }
     }
 
     fun resetPwUI() {
+
         binding.changePwEdt.text = null
         binding.repeatPwEdt.text = null
         binding.circleImg.visibility = View.GONE
