@@ -54,7 +54,8 @@
         android:gravity="center"
         android:paddingTop="2dp"
         tools:visibility="visible"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
 
         <Button
             android:id="@+id/myDepartureEditBtn"

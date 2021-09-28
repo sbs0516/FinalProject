@@ -1,5 +1,6 @@
 package com.nepplus.finalproject.adapters
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Fade
 import com.nepplus.finalproject.EditMyDepartureActivity
 import com.nepplus.finalproject.MyDeparturePopUpActivity
 import com.nepplus.finalproject.R
 import com.nepplus.finalproject.datas.PlaceData
+
 
 class MyDepartureListRecyclerAdapter(
     val mContext: Context,
@@ -38,8 +41,11 @@ class MyDepartureListRecyclerAdapter(
 
             if(isEditLayout) {
                 myDepartureEdtLayout.visibility = View.VISIBLE
+//                myDepartureEdtLayout.animate().translationXBy(100f).start()
             } else {
+//                myDepartureEdtLayout.animate().translationXBy(-100f).start()
                 myDepartureEdtLayout.visibility = View.GONE
+
             }
 
         }
@@ -77,4 +83,5 @@ class MyDepartureListRecyclerAdapter(
     override fun getItemCount(): Int {
         return mList.size
     }
+
 }
