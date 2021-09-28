@@ -18,6 +18,11 @@ class ChangePasswordActivity : BaseActivity() {
 
     lateinit var binding: ActivityChangePasswordBinding
 
+    val Circle_GONE_Cross_VISI = 1
+    val Circle_VISI_Cross_GONE = 2
+    val rCircle_GONE_rCross_VISI = 3
+    val rCircle_VISI_rCross_GONE = 4
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_change_password)
@@ -53,32 +58,27 @@ class ChangePasswordActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            binding.currentPwEdt.setBackgroundResource(0)
-
-
             if(newPw.length < 4) {
                 Toast.makeText(mContext, "변경할 비밀번호를 네 자리 이상 입력해주세요", Toast.LENGTH_SHORT).show()
-                binding.changePwEdt.text = null
-                binding.repeatPwEdt.text = null
+                resetPwUI()
                 return@setOnClickListener
             } else {
-                binding.circleImg.visibility = View.VISIBLE
-                binding.crossImg.visibility = View.GONE
+//                binding.circleImg.visibility = View.VISIBLE
+//                binding.crossImg.visibility = View.GONE
+                crossImgAndCirCleImgVisible(Circle_VISI_Cross_GONE)
             }
 
             if(newPw != repeatPw) {
                 Toast.makeText(mContext, "변경할 비밀번호가 다르게 입력되었습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
-                binding.changePwEdt.text = null
-                binding.repeatPwEdt.text = null
-                binding.circleImg.visibility = View.GONE
-                binding.crossImg.visibility = View.VISIBLE
-                binding.repeatCircleImg.visibility = View.GONE
-                binding.repeatCrossImg.visibility = View.VISIBLE
+                resetPwUI()
                 return@setOnClickListener
             } else {
-                binding.repeatCircleImg.visibility = View.VISIBLE
-                binding.repeatCrossImg.visibility = View.GONE
+//                binding.repeatCircleImg.visibility = View.VISIBLE
+//                binding.repeatCrossImg.visibility = View.GONE
+                crossImgAndCirCleImgVisible(rCircle_VISI_rCross_GONE)
             }
+
+            binding.currentPwEdt.setBackgroundResource(0)
 
             val alert = AlertDialog.Builder(mContext)
             alert.setMessage("비밀번호를 변경하시겠습니까?")
@@ -115,28 +115,63 @@ class ChangePasswordActivity : BaseActivity() {
 
         binding.changePwEdt.addTextChangedListener {
             if(it.toString().length < 4) {
-                binding.circleImg.visibility = View.GONE
-                binding.crossImg.visibility = View.VISIBLE
+//                binding.circleImg.visibility = View.GONE
+//                binding.crossImg.visibility = View.VISIBLE
+                crossImgAndCirCleImgVisible(Circle_GONE_Cross_VISI)
             } else {
-                binding.circleImg.visibility = View.VISIBLE
-                binding.crossImg.visibility = View.GONE
+//                binding.circleImg.visibility = View.VISIBLE
+//                binding.crossImg.visibility = View.GONE
+                crossImgAndCirCleImgVisible(Circle_VISI_Cross_GONE)
             }
 
             if(it.toString() != binding.repeatPwEdt.text.toString()) {
-                binding.repeatCircleImg.visibility = View.GONE
-                binding.repeatCrossImg.visibility = View.VISIBLE
+//                binding.repeatCircleImg.visibility = View.GONE
+//                binding.repeatCrossImg.visibility = View.VISIBLE
+                crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
             }
         }
         binding.repeatPwEdt.addTextChangedListener {
             if(it.toString() == binding.changePwEdt.text.toString() && it.toString().length >= 4) {
-                binding.repeatCircleImg.visibility = View.VISIBLE
-                binding.repeatCrossImg.visibility = View.GONE
+//                binding.repeatCircleImg.visibility = View.VISIBLE
+//                binding.repeatCrossImg.visibility = View.GONE
+                crossImgAndCirCleImgVisible(rCircle_VISI_rCross_GONE)
             } else {
+//                binding.repeatCircleImg.visibility = View.GONE
+//                binding.repeatCrossImg.visibility = View.VISIBLE
+                crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
+            }
+        }
+    }
+
+    fun resetPwUI() {
+        binding.changePwEdt.text = null
+        binding.repeatPwEdt.text = null
+        binding.circleImg.visibility = View.GONE
+        binding.crossImg.visibility = View.VISIBLE
+        binding.repeatCircleImg.visibility = View.GONE
+        binding.repeatCrossImg.visibility = View.VISIBLE
+    }
+
+    fun crossImgAndCirCleImgVisible(case: Int) {
+        when(case) {
+            1 -> {
+                binding.circleImg.visibility = View.GONE
+                binding.crossImg.visibility = View.VISIBLE
+            }
+            2 -> {
+                binding.circleImg.visibility = View.VISIBLE
+                binding.crossImg.visibility = View.GONE
+            }
+            3 -> {
                 binding.repeatCircleImg.visibility = View.GONE
                 binding.repeatCrossImg.visibility = View.VISIBLE
             }
+            4 -> {
+                binding.repeatCircleImg.visibility = View.VISIBLE
+                binding.repeatCrossImg.visibility = View.GONE
+            }
         }
-
-
     }
+
+
 }
