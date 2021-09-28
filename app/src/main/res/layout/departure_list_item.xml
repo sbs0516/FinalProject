@@ -45,26 +45,26 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/editLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:gravity="center"
-        tools:visibility="visible"
-        android:orientation="vertical" >
+<!--    <LinearLayout-->
+<!--        android:id="@+id/editLayout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        android:gravity="center"-->
+<!--        tools:visibility="visible"-->
+<!--        android:orientation="vertical" >-->
 
-        <Button
-            android:id="@+id/editBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:gravity="center"
-            android:text="편집" />
+<!--        <Button-->
+<!--            android:id="@+id/editBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="10dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="편집" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 
 
