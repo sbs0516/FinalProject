@@ -24,8 +24,8 @@ class MyDepartureListRecyclerAdapter(
         val myPrimaryPlaceText = view.findViewById<TextView>(R.id.myPrimaryPlaceText)
         val myPlaceImg = view.findViewById<ImageView>(R.id.myPlaceImg)
         val myDepartureLayout = view.findViewById<LinearLayout>(R.id.myDepartureLayout)
-        val editLayout = view.findViewById<LinearLayout>(R.id.editLayout)
-        val editBtn = view.findViewById<Button>(R.id.editBtn)
+        val myDepartureEdtLayout = view.findViewById<LinearLayout>(R.id.myDepartureEdtLayout)
+        val myDepartureEditBtn = view.findViewById<Button>(R.id.myDepartureEditBtn)
 
         fun bind(data: PlaceData, isEditLayout: Boolean) {
 
@@ -37,13 +37,12 @@ class MyDepartureListRecyclerAdapter(
             myPlaceTxt.text = data.name
 
             if(isEditLayout) {
-                editLayout.visibility = View.VISIBLE
+                myDepartureEdtLayout.visibility = View.VISIBLE
             } else {
-                editLayout.visibility = View.GONE
+                myDepartureEdtLayout.visibility = View.GONE
             }
 
         }
-
 
     }
 
@@ -67,7 +66,7 @@ class MyDepartureListRecyclerAdapter(
             Toast.makeText(mContext, "장소 레이아웃 클릭", Toast.LENGTH_SHORT).show()
         }
 
-        holder.editBtn.setOnClickListener {
+        holder.myDepartureEditBtn.setOnClickListener {
 
             val myIntent = Intent(mContext, EditMyDepartureActivity::class.java)
             mContext.startActivity(myIntent)

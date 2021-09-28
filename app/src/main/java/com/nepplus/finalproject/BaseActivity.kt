@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -21,7 +22,7 @@ abstract class BaseActivity: AppCompatActivity() {
 
     lateinit var barTitleTxt: TextView
     lateinit var barAddListImg: ImageView
-    lateinit var barDepartureEdtToggleBtn: TextView
+    lateinit var barDepartureEdtToggleBtn: ToggleButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

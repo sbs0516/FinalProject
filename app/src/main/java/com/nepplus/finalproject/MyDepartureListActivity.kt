@@ -50,7 +50,12 @@ class MyDepartureListActivity : BaseActivity() {
 //            mDepartureRecyclerAdapter.isEditLayout = isPushEditTxt
 //            mDepartureRecyclerAdapter.notifyDataSetChanged()
 //        }
-        barDepartureEdtToggleBtn.
+        barDepartureEdtToggleBtn.setOnCheckedChangeListener { compoundButton, isClicked ->
+
+            mDepartureRecyclerAdapter.isEditLayout = isClicked
+            mDepartureRecyclerAdapter.notifyDataSetChanged()
+
+        }
 
     }
 
