@@ -3,7 +3,9 @@ package com.nepplus.finalproject
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.nepplus.finalproject.databinding.ActivityChangePasswordBinding
 import com.nepplus.finalproject.datas.BasicResponse
@@ -41,11 +43,41 @@ class ChangePasswordActivity : BaseActivity() {
             val newPw = binding.changePwEdt.text.toString()
             val repeatPw = binding.repeatPwEdt.text.toString()
 
-            if(newPw != repeatPw) {
-                Toast.makeText(mContext, "바꿀 비밀번호가 다르게 입력되었습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
+            if(currentPw == null) {
+                Toast.makeText(mContext, "현재 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+                binding.currentPwEdt.setBackgroundResource(R.drawable.underline_red_rect)
+                return@setOnClickListener
+            } else if(currentPw.length < 4) {
+                Toast.makeText(mContext, "현재 비밀번호를 네 자리 이상 입력해주세요", Toast.LENGTH_SHORT).show()
+                binding.currentPwEdt.setBackgroundResource(R.drawable.underline_red_rect)
+                return@setOnClickListener
+            }
+
+            binding.currentPwEdt.setBackgroundResource(0)
+
+
+            if(newPw.length < 4) {
+                Toast.makeText(mContext, "변경할 비밀번호를 네 자리 이상 입력해주세요", Toast.LENGTH_SHORT).show()
                 binding.changePwEdt.text = null
                 binding.repeatPwEdt.text = null
                 return@setOnClickListener
+            } else {
+                binding.circleImg.visibility = View.VISIBLE
+                binding.crossImg.visibility = View.GONE
+            }
+
+            if(newPw != repeatPw) {
+                Toast.makeText(mContext, "변경할 비밀번호가 다르게 입력되었습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
+                binding.changePwEdt.text = null
+                binding.repeatPwEdt.text = null
+                binding.circleImg.visibility = View.GONE
+                binding.crossImg.visibility = View.VISIBLE
+                binding.repeatCircleImg.visibility = View.GONE
+                binding.repeatCrossImg.visibility = View.VISIBLE
+                return@setOnClickListener
+            } else {
+                binding.repeatCircleImg.visibility = View.VISIBLE
+                binding.repeatCrossImg.visibility = View.GONE
             }
 
             val alert = AlertDialog.Builder(mContext)
@@ -80,6 +112,26 @@ class ChangePasswordActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        binding.changePwEdt.addTextChangedListener {
+            if(it.toString().length < 4) {
+                binding.circleImg.visibility = View.GONE
+                binding.crossImg.visibility = View.VISIBLE
+            } else {
+                binding.circleImg.visibility = View.VISIBLE
+                binding.crossImg.visibility = View.GONE
+            }
+        }
+        binding.repeatPwEdt.addTextChangedListener {
+            if(it.toString() == binding.changePwEdt.text.toString() && it.toString().length >= 4) {
+                binding.repeatCircleImg.visibility = View.VISIBLE
+                binding.repeatCrossImg.visibility = View.GONE
+            } else {
+                binding.repeatCircleImg.visibility = View.GONE
+                binding.repeatCrossImg.visibility = View.VISIBLE
+            }
+        }
+
 
     }
 }
