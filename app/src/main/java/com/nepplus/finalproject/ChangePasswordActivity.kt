@@ -63,8 +63,6 @@ class ChangePasswordActivity : BaseActivity() {
                 resetPwUI()
                 return@setOnClickListener
             } else {
-//                binding.circleImg.visibility = View.VISIBLE
-//                binding.crossImg.visibility = View.GONE
                 crossImgAndCirCleImgVisible(Circle_VISI_Cross_GONE)
             }
 
@@ -73,8 +71,6 @@ class ChangePasswordActivity : BaseActivity() {
                 resetPwUI()
                 return@setOnClickListener
             } else {
-//                binding.repeatCircleImg.visibility = View.VISIBLE
-//                binding.repeatCrossImg.visibility = View.GONE
                 crossImgAndCirCleImgVisible(rCircle_VISI_rCross_GONE)
             }
 
@@ -115,29 +111,19 @@ class ChangePasswordActivity : BaseActivity() {
 
         binding.changePwEdt.addTextChangedListener {
             if(it.toString().length < 4) {
-//                binding.circleImg.visibility = View.GONE
-//                binding.crossImg.visibility = View.VISIBLE
                 crossImgAndCirCleImgVisible(Circle_GONE_Cross_VISI)
             } else {
-//                binding.circleImg.visibility = View.VISIBLE
-//                binding.crossImg.visibility = View.GONE
                 crossImgAndCirCleImgVisible(Circle_VISI_Cross_GONE)
             }
 
             if(it.toString() != binding.repeatPwEdt.text.toString()) {
-//                binding.repeatCircleImg.visibility = View.GONE
-//                binding.repeatCrossImg.visibility = View.VISIBLE
                 crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
             }
         }
         binding.repeatPwEdt.addTextChangedListener {
             if(it.toString() == binding.changePwEdt.text.toString() && it.toString().length >= 4) {
-//                binding.repeatCircleImg.visibility = View.VISIBLE
-//                binding.repeatCrossImg.visibility = View.GONE
                 crossImgAndCirCleImgVisible(rCircle_VISI_rCross_GONE)
             } else {
-//                binding.repeatCircleImg.visibility = View.GONE
-//                binding.repeatCrossImg.visibility = View.VISIBLE
                 crossImgAndCirCleImgVisible(rCircle_GONE_rCross_VISI)
             }
         }
@@ -153,6 +139,7 @@ class ChangePasswordActivity : BaseActivity() {
     }
 
     fun crossImgAndCirCleImgVisible(case: Int) {
+
         when(case) {
             1 -> {
                 binding.circleImg.visibility = View.GONE
