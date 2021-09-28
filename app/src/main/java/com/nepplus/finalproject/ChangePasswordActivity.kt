@@ -18,10 +18,10 @@ class ChangePasswordActivity : BaseActivity() {
 
     lateinit var binding: ActivityChangePasswordBinding
 
-    val Circle_GONE_Cross_VISI = 1
-    val Circle_VISI_Cross_GONE = 2
-    val rCircle_GONE_rCross_VISI = 3
-    val rCircle_VISI_rCross_GONE = 4
+    private val Circle_GONE_Cross_VISI = 1
+    private val Circle_VISI_Cross_GONE = 2
+    private val rCircle_GONE_rCross_VISI = 3
+    private val rCircle_VISI_rCross_GONE = 4
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

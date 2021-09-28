@@ -12,15 +12,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
-import com.nepplus.finalproject.ChangePasswordActivity
-import com.nepplus.finalproject.LoginActivity
-import com.nepplus.finalproject.MyDepartureListActivity
-import com.nepplus.finalproject.R
+import com.nepplus.finalproject.*
 import com.nepplus.finalproject.databinding.FragmentMyInformationBinding
 import com.nepplus.finalproject.datas.BasicResponse
 import com.nepplus.finalproject.utils.ContextUtil
@@ -31,7 +27,6 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 
 class MyInformationFragment: BaseFragment() {
 
@@ -55,6 +50,13 @@ class MyInformationFragment: BaseFragment() {
     }
 
     override fun setupEvents() {
+
+        binding.leavingLayout.setOnClickListener {
+
+            val myIntent = Intent(mContext, LeavingMemberActivity::class.java)
+            startActivity(myIntent)
+
+        }
 
         binding.myPassWordSettingLayout.setOnClickListener {
 

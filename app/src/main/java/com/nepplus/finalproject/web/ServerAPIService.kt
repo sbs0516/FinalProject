@@ -80,4 +80,8 @@ interface ServerAPIService {
         @Field("current_password") current_password: String,
         @Field("new_password") new_password: String): Call<BasicResponse>
 
+    @DELETE("/user")
+    fun deleteRequestMember(
+        @Query("text") agree: String): Call<BasicResponse>
+
 }

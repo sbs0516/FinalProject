@@ -17,6 +17,7 @@
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_add_my_departure.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_change_password.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_edit_appointment.xml" value="0.264" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_leaving_member.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_main.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_my_custom.xml" value="0.20625" />
@@ -26,6 +27,7 @@
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_splash.xml" value="0.20625" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/activity_view_map.xml" value="0.2234375" />
+        <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_leaving_member.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_my_departure.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_nickname_edit.xml" value="0.2234375" />
         <entry key="..\:/workspace/FinalProject/app/src/main/res/layout/alert_custom_password_edit.xml" value="0.2234375" />
