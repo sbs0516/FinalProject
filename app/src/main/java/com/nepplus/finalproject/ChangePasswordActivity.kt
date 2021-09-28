@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.nepplus.finalproject.databinding.ActivityChangePasswordBinding
 import com.nepplus.finalproject.datas.BasicResponse
+import com.nepplus.finalproject.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,7 +58,9 @@ class ChangePasswordActivity : BaseActivity() {
                             response: Response<BasicResponse>
                         ) {
                             if(response.isSuccessful) {
+                                ContextUtil.setToken(mContext, response.body()!!.data.token)
                                 Toast.makeText(mContext, "비밀번호가 성공적으로 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                                finish()
                             } else {
                                 Toast.makeText(mContext, "현재 비밀번호가 틀렸습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
                                 binding.currentPwEdt.setBackgroundResource(R.drawable.underline_red_rect)
