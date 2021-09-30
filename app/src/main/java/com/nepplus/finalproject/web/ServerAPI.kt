@@ -8,6 +8,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class ServerAPI {
 
@@ -33,7 +34,10 @@ class ServerAPI {
                 }
                 val myClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
-                val gson = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()
+                // 기존 gson 에 시차 보정기를 보조 도구로 채택
+                val gson = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .registerTypeAdapter(Date::class.java, DateDeserializer()).create()
+
                 retrofit =Retrofit.Builder().baseUrl(hostUrl).client(myClient)
                     .addConverterFactory(GsonConverterFactory.create(gson)).build()
             }

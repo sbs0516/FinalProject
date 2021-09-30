@@ -37,8 +37,8 @@ class AppointmentAdapter(
 
         titleTxt.text = data.title
 
-//        val sdf = SimpleDateFormat("M월 d일 a h시 mm분")
-//        dateTimeTxt.text = sdf.format(data.datetime.time)
+        val sdf = SimpleDateFormat("M월 d일 a h시 mm분")
+        dateTimeTxt.text = sdf.format(data.datetime.time)
 
         placeTxt.text = data.place
 
