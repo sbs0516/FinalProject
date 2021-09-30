@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.nepplus.finalproject.EditMyDepartureActivity
@@ -19,7 +20,7 @@ class MyDepartureListRecyclerAdapter(
 
     var isEditLayout = false
 
-    class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         val myPlaceTxt = view.findViewById<TextView>(R.id.myPlaceTxt)
         val myPrimaryPlaceText = view.findViewById<TextView>(R.id.myPrimaryPlaceText)
@@ -39,10 +40,13 @@ class MyDepartureListRecyclerAdapter(
 
             if(isEditLayout) {
                 myDepartureEdtLayout.visibility = View.VISIBLE
-//                myDepartureEdtLayout.animate().translationXBy(100f).start()
+                val animationVisible = AnimationUtils.loadAnimation(mContext, R.anim.sweep_visible_item_anime)
+                myDepartureEdtLayout.startAnimation(animationVisible)
+
             } else {
-//                myDepartureEdtLayout.animate().translationXBy(-100f).start()
                 myDepartureEdtLayout.visibility = View.GONE
+                val animationGone = AnimationUtils.loadAnimation(mContext, R.anim.sweep_gone_item_anime)
+                myDepartureEdtLayout.startAnimation(animationGone)
 
             }
 
