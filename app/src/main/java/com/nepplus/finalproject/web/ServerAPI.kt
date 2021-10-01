@@ -14,7 +14,7 @@ class ServerAPI {
 
     companion object {
 
-        private val hostUrl = "http://3.36.146.152"
+        private val hostUrl = "https://keepthetime.xyz/api/docs/"
 
         private var retrofit: Retrofit? = null
 
