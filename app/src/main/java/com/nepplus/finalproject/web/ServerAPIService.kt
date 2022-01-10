@@ -89,4 +89,15 @@ interface ServerAPIService {
         @Query("type") type: String,
         @Query("value") value: String): Call<BasicResponse>
 
+    @FormUrlEncoded
+    @POST("/appointment/arrival")
+    fun postRequestArrival(
+        @Field("appointment_id") appointmentId: Int,
+        @Field("latitude") lat: Double,
+        @Field("longitude") lng: Double): Call<BasicResponse>
+
+    @GET("/appointment/{appointment_id}")
+    fun getRequestAppointmentDetail(
+        @Path("appointment_id") id: Int): Call<BasicResponse>
+
 }
